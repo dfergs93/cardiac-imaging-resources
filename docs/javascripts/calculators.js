@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
     initECVCalc();
     init4DFlowCalc();
     initBernoulliCalc();
+    initCHDTabs();
 });
 
 /* ============================================================
@@ -1099,4 +1100,31 @@ function calcBernoulli(source) {
         const calcVmax = Math.sqrt(pg / 4);
         vmaxEl.value = calcVmax.toFixed(2);
     }
+}
+
+/* ============================================================
+   CHD SEGMENTAL ANALYSIS TABS
+   ============================================================ */
+
+function initCHDTabs() {
+    // Setup tab switching for CHD segmental analysis
+    document.querySelectorAll('.chd-tab-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const tabName = this.dataset.tab;
+            const container = this.closest('.chd-tabs-container');
+            
+            if (!container) return;
+            
+            // Remove active class from all buttons and content in this container
+            container.querySelectorAll('.chd-tab-btn').forEach(b => b.classList.remove('active'));
+            container.querySelectorAll('.chd-tab-content').forEach(c => c.classList.remove('active'));
+            
+            // Add active class to clicked button and corresponding content
+            this.classList.add('active');
+            const contentEl = container.querySelector('#chd-tab-' + tabName);
+            if (contentEl) {
+                contentEl.classList.add('active');
+            }
+        });
+    });
 }

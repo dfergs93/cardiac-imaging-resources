@@ -41,7 +41,16 @@ nav:
   - Valves:
     - Grading Reference: valves/index.md
     - Device Planning: valves/tavr_tmvr.md
-  - Congenital HD: congenital/index.md
+  - Congenital HD:
+    - Overview & Segmental Analysis: congenital/index.md
+    - Tetralogy of Fallot: congenital/tof.md
+    - Transposition (TGA): congenital/tga.md
+    - Atrial Septal Defect: congenital/asd.md
+    - Ventricular Septal Defect: congenital/vsd.md
+    - Fontan Circulation: congenital/fontan.md
+    - Coarctation: congenital/coa.md
+    - Ebstein Anomaly: congenital/ebstein.md
+    - AVSD: congenital/avsd.md
   - Calculators:
     - Overview: calculators/index.md
     - ECV: calculators/ecv.md

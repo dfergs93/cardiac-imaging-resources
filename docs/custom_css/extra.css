@@ -451,6 +451,98 @@ select:focus,
 }
 
 /* ============================================================
+   CHD SEGMENTAL ANALYSIS TABS
+   ============================================================ */
+
+.chd-tabs-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    background: var(--md-default-bg-color);
+    border: 1px solid var(--md-default-fg-color--lightest);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+}
+
+.chd-tabs {
+    display: flex;
+    gap: 0.25rem;
+    border-bottom: 2px solid var(--md-default-fg-color--lightest);
+    flex-wrap: wrap;
+    margin: 0 0 var(--spacing-md) 0;
+    overflow-x: auto;
+}
+
+.chd-tab-btn {
+    padding: 0.625rem 1rem;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: var(--md-default-fg-color--light);
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    margin-bottom: -2px;
+    white-space: nowrap;
+}
+
+.chd-tab-btn:hover {
+    color: var(--md-default-fg-color);
+    border-bottom-color: var(--md-default-fg-color--lighter);
+}
+
+.chd-tab-btn.active {
+    color: var(--md-primary-fg-color);
+    border-bottom-color: var(--md-primary-fg-color);
+}
+
+.chd-tab-content {
+    display: none;
+    animation: fadeIn 0.2s ease-in;
+}
+
+.chd-tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.seg-analysis {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.seg-analysis h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--md-primary-fg-color);
+    margin: 0.5rem 0 0.25rem 0;
+    border-bottom: 1px solid var(--md-default-fg-color--lightest);
+    padding-bottom: 0.25rem;
+}
+
+.seg-analysis p {
+    margin: 0.25rem 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--md-default-fg-color);
+}
+
+.seg-abnormal {
+    background: rgba(var(--md-primary-fg-color-rgb), 0.1);
+    padding: 0 0.25rem;
+    border-radius: 2px;
+    font-weight: 500;
+    color: var(--md-primary-fg-color);
+}
+
+/* ============================================================
    RESULTS DISPLAY
    ============================================================ */
 
