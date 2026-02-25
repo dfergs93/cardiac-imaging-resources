@@ -1,0 +1,80 @@
+site_name: Cardiac Imaging Resources
+site_url: https://dfergs93.github.io/cardiac-imaging-resources/
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.indexes
+    - navigation.sections
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.copy
+  palette:
+    - scheme: slate
+      primary: indigo
+      accent: deep purple
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    - scheme: default
+      primary: indigo
+      accent: deep purple
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+
+nav:
+  - Home: index.md
+  - Cardiac CT: cardiac_ct/index.md
+  - Cardiac MRI:
+    - Overview & Sequences: cardiac_mri/index.md
+    - Protocols:
+      - All Protocols: cardiac_mri/protocols/index.md
+      - Cardiac Function: cardiac_mri/protocols/cardiac_function.md
+      - Viability: cardiac_mri/protocols/viability.md
+      - Stress Perfusion: cardiac_mri/protocols/stress_perfusion.md
+      - Congenital / 4D Flow: cardiac_mri/protocols/congenital_4dflow.md
+      - Cardiac Masses: cardiac_mri/protocols/cardiac_masses.md
+  - Valves:
+    - Grading Reference: valves/index.md
+    - Device Planning: valves/tavr_tmvr.md
+  - Congenital HD: congenital/index.md
+  - Calculators:
+    - Overview: calculators/index.md
+    - ECV: calculators/ecv.md
+    - 4D Flow: calculators/flow.md
+    - Bernoulli: calculators/bernoulli.md
+
+plugins:
+  - search
+  - awesome-pages
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+  - tables
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_css:
+  - custom_css/extra.css
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - javascripts/calculators.js

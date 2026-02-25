@@ -1,0 +1,1038 @@
+/* ============================================================
+   CSS VARIABLES & BASE SETUP
+   ============================================================ */
+:root {
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    
+    --border-radius-sm: 4px;
+    --border-radius-md: 6px;
+    --border-radius-lg: 8px;
+    --border-radius-xl: 12px;
+    
+    --transition-fast: 0.2s;
+    --transition-medium: 0.3s;
+}
+
+/* ============================================================
+   LANDING PAGE
+   ============================================================ */
+
+/* Hero Section */
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--md-default-fg-color--light);
+    margin: var(--spacing-md) 0 var(--spacing-xl);
+    text-align: center;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    margin: var(--spacing-xl) 0;
+    flex-wrap: wrap;
+}
+
+.hero-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: 0.875rem 2rem;
+    border-radius: var(--border-radius-lg);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all var(--transition-medium) ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.hero-btn.primary {
+    background: var(--md-primary-fg-color);
+    color: white;
+}
+
+.hero-btn.primary:hover {
+    background: var(--md-accent-fg-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.hero-btn.secondary {
+    background: var(--md-default-bg-color);
+    color: var(--md-primary-fg-color);
+    border: 2px solid var(--md-primary-fg-color);
+}
+
+.hero-btn.secondary:hover {
+    background: var(--md-primary-fg-color);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Calculator Landing Grid */
+.calc-landing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    margin: var(--spacing-xl) 0;
+}
+
+.calc-landing-card {
+    background: var(--md-default-bg-color);
+    border: 2px solid var(--md-default-fg-color--lightest);
+    border-radius: var(--border-radius-xl);
+    padding: var(--spacing-lg);
+    text-decoration: none;
+    transition: all 0.25s ease;
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+}
+
+.calc-landing-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+    border-color: var(--md-primary-fg-color);
+    text-decoration: none;
+}
+
+.calc-landing-card .calc-icon {
+    font-size: 2.5rem;
+    flex-shrink: 0;
+}
+
+.calc-landing-card h3 {
+    margin: 0 0 var(--spacing-sm);
+    color: var(--md-primary-fg-color);
+    font-size: 1.1rem;
+}
+
+.calc-landing-card p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--md-default-fg-color--light);
+    line-height: 1.5;
+}
+
+/* ============================================================
+   CALCULATOR CARD STRUCTURE
+   ============================================================ */
+
+.calc-card {
+    background: var(--md-default-bg-color);
+    border: 2px solid var(--md-default-fg-color--lightest);
+    border-radius: var(--border-radius-xl);
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.calc-card header {
+    background: var(--md-code-bg-color);
+    border-bottom: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.calc-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-lg);
+}
+
+.calc-icon {
+    font-size: 1.8rem;
+}
+
+.calc-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--md-default-fg-color);
+}
+
+.calc-header p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--md-default-fg-color--light);
+}
+
+.calc-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    min-height: 200px;
+}
+
+/* ============================================================
+   INPUT SECTIONS
+   ============================================================ */
+
+/* Section Titles */
+h3,
+.flow-section-title {
+    font-size: 1rem;
+    margin: var(--spacing-lg) 0 0.75rem 0;
+    color: var(--md-primary-fg-color);
+    border-bottom: 1px solid var(--md-default-fg-color--lightest);
+    padding-bottom: var(--spacing-sm);
+}
+
+h3:first-child {
+    margin-top: 0;
+}
+
+/* Input Groups */
+.input-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.input-group label {
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+    display: block;
+    color: var(--md-default-fg-color--light);
+    font-weight: 500;
+}
+
+.input-row,
+.calc-input-stack {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.calc-input-stack {
+    max-width: 600px;
+    grid-template-columns: 1fr;
+}
+
+.calc-input-stack .input-row {
+    grid-template-columns: 1fr 180px;
+    align-items: center;
+    gap: var(--spacing-lg);
+}
+
+/* Input Fields */
+input[type="number"],
+input[type="text"],
+select,
+.flow-input,
+.fontan-input {
+    width: 100%;
+    padding: var(--spacing-sm) 0.75rem;
+    font-size: 0.95rem;
+    background: var(--md-code-bg-color);
+    border: 1px solid var(--md-default-fg-color--lighter);
+    border-radius: var(--border-radius-sm);
+    color: var(--md-default-fg-color);
+    transition: border-color var(--transition-fast);
+    box-sizing: border-box;
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus,
+select:focus,
+.flow-input:focus,
+.fontan-input:focus {
+    outline: none;
+    border-color: var(--md-primary-fg-color);
+    box-shadow: 0 0 0 3px rgba(var(--md-primary-fg-color-rgb, 33, 150, 243), 0.1);
+}
+
+.input-warning {
+    border-color: #ff9800 !important;
+    background: rgba(255, 152, 0, 0.05) !important;
+}
+
+/* ============================================================
+   FLOW CALCULATOR - TWO COLUMN LAYOUT
+   ============================================================ */
+
+.flow-calc-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+    padding: var(--spacing-lg);
+}
+
+.flow-inputs-section {
+    padding-right: var(--spacing-md);
+}
+
+.flow-results-section {
+    position: sticky;
+    top: var(--spacing-md);
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+    background: var(--md-code-bg-color);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--md-default-fg-color--lighter);
+}
+
+/* Flow Tabs */
+.flow-tabs {
+    display: flex;
+    gap: var(--spacing-sm);
+    border-bottom: 2px solid var(--md-default-fg-color--lightest);
+    margin-bottom: var(--spacing-lg);
+}
+
+.flow-tab-btn {
+    padding: 0.6rem 1.2rem;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--md-default-fg-color--light);
+    transition: all var(--transition-fast);
+}
+
+.flow-tab-btn:hover {
+    color: var(--md-default-fg-color);
+    background: var(--md-code-bg-color);
+}
+
+.flow-tab-btn.active {
+    color: var(--md-primary-fg-color);
+    border-bottom-color: var(--md-primary-fg-color);
+}
+
+.flow-tab-content {
+    display: none;
+}
+
+.flow-tab-content.active {
+    display: block;
+}
+
+
+/* ============================================================
+   BERNOULLI CALCULATOR INPUT ROW
+   ============================================================ */
+
+.bern-header {
+    background: var(--md-code-bg-color);
+}
+
+.calc-card:has(.bern-header) .calc-body {
+    display: block !important;
+    padding: var(--spacing-lg);
+    grid-template-columns: auto;
+}
+
+.bern-input-row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: var(--spacing-lg);
+    align-items: flex-end;
+    padding: 0;
+}
+
+.bern-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.bern-input-group label {
+    font-size: 0.9rem;
+    color: var(--md-default-fg-color--light);
+    font-weight: 500;
+}
+
+.bern-input-group input {
+    padding: 0.5rem;
+    border: 1px solid var(--md-default-fg-color--lightest);
+    border-radius: var(--border-radius-md);
+    font-size: 1rem;
+    font-family: inherit;
+    background: var(--md-default-bg-color);
+    color: var(--md-default-fg-color);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.bern-input-group input:focus {
+    outline: none;
+    border-color: var(--md-primary-fg-color);
+    box-shadow: 0 0 0 3px rgba(var(--md-primary-fg-color-rgb), 0.1);
+}
+
+.bern-input-spacer {
+    font-size: 1.2rem;
+    color: var(--md-default-fg-color--light);
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+}
+
+/* ============================================================
+   BERNOULLI CALCULATOR TABS
+   ============================================================ */
+
+.bern-tabs-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.bern-tabs {
+    display: flex;
+    gap: 0.5rem;
+    border-bottom: 2px solid var(--md-default-fg-color--lightest);
+    flex-wrap: wrap;
+    margin-bottom: 0;
+}
+
+.bern-tab-btn {
+    padding: 0.75rem 1.25rem;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: var(--md-default-fg-color--light);
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    margin-bottom: -2px;
+}
+
+.bern-tab-btn:hover {
+    color: var(--md-default-fg-color);
+    border-bottom-color: var(--md-default-fg-color--lighter);
+}
+
+.bern-tab-btn.active {
+    color: var(--md-primary-fg-color);
+    border-bottom-color: var(--md-primary-fg-color);
+}
+
+.bern-tab-content {
+    display: none;
+    padding: 1rem 0;
+}
+
+.bern-tab-content.active {
+    display: block;
+}
+
+.bern-tab-content table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.bern-tab-content thead {
+    background: var(--md-code-bg-color);
+}
+
+.bern-tab-content th {
+    padding: 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--md-primary-fg-color);
+    border-bottom: 2px solid var(--md-default-fg-color--lightest);
+}
+
+.bern-tab-content td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.bern-tab-content tbody tr:hover {
+    background: var(--md-code-bg-color);
+}
+
+/* ============================================================
+   RESULTS DISPLAY
+   ============================================================ */
+
+.flow-results-wrapper,
+.calc-result {
+    width: 100%;
+}
+
+.flow-results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--md-default-fg-color--lighter);
+}
+
+.flow-results-header h3 {
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+/* Result Display - Main Metrics */
+.calc-result-main {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.calc-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: inherit;
+}
+
+.calc-value-pair {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+    font-family: inherit;
+}
+
+/* Flow Results Grid */
+.flow-results-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.flow-result-line {
+    display: grid;
+    grid-template-columns: 140px 1fr auto;
+    gap: var(--spacing-md);
+    align-items: center;
+    padding: 0.6rem 0.75rem;
+    background: var(--md-default-bg-color);
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--md-default-fg-color--lightest);
+    min-height: 40px;
+}
+
+.flow-result-line.highlight {
+    background: rgba(var(--md-primary-fg-color-rgb, 33, 150, 243), 0.05);
+    border-color: var(--md-primary-fg-color);
+}
+
+.flow-result-line.indent {
+    margin-left: var(--spacing-md);
+}
+
+.flow-result-label {
+    font-weight: 500;
+    color: var(--md-default-fg-color--light);
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.flow-result-value {
+    color: var(--md-default-fg-color);
+    font-size: 0.85rem;
+    font-weight: 500;
+    font-family: inherit;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.flow-result-badge {
+    display: flex;
+    justify-content: flex-end;
+    white-space: nowrap;
+}
+
+.flow-sep {
+    color: var(--md-default-fg-color--lighter);
+    margin: 0 0.3rem;
+}
+
+/* ============================================================
+   REGURGITATION GRID (2x2)
+   ============================================================ */
+
+.regurg-results-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-lg);
+    border-top: 2px solid var(--md-default-fg-color--lighter);
+}
+
+.regurg-result-item {
+    background: var(--md-code-bg-color);
+    padding: 0.875rem;
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--md-default-fg-color--lightest);
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.regurg-result-item.highlight {
+    border-color: #ed8936;
+    box-shadow: 0 0 0 2px rgba(237, 137, 54, 0.15);
+}
+
+.regurg-result-item.empty {
+    opacity: 0.3;
+}
+
+.regurg-result-label {
+    font-weight: 600;
+    color: var(--md-primary-fg-color);
+    font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.regurg-result-value {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--md-default-fg-color);
+    font-family: inherit;
+    line-height: 1.5;
+}
+
+.regurg-result-badge {
+    margin-top: auto;
+}
+
+/* ============================================================
+   BADGES
+   ============================================================ */
+
+.calc-badge {
+    display: inline-block;
+    padding: 0.3rem 0.6rem;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+}
+
+/* Badge Colors - Light Mode */
+.calc-badge.normal,
+.calc-badge.balanced,
+.calc-badge.mild {
+    background: rgba(76, 175, 80, 0.15);
+    color: #2e7d32;
+}
+
+.calc-badge.borderline,
+.calc-badge.moderate,
+.calc-badge.abnormal,
+.calc-badge.elevated,
+.calc-badge.asymmetric {
+    background: rgba(255, 152, 0, 0.15);
+    color: #e65100;
+}
+
+.calc-badge.severe {
+    background: rgba(198, 40, 40, 0.15);
+    color: #c62828;
+}
+
+.calc-badge.shunt-rl {
+    background: rgba(33, 150, 243, 0.15);
+    color: #1565c0;
+}
+
+/* Badge Colors - Dark Mode */
+[data-md-color-scheme="slate"] .calc-badge.normal,
+[data-md-color-scheme="slate"] .calc-badge.balanced,
+[data-md-color-scheme="slate"] .calc-badge.mild {
+    background: rgba(76, 175, 80, 0.25);
+    color: #81c784;
+}
+
+[data-md-color-scheme="slate"] .calc-badge.borderline,
+[data-md-color-scheme="slate"] .calc-badge.moderate,
+[data-md-color-scheme="slate"] .calc-badge.abnormal,
+[data-md-color-scheme="slate"] .calc-badge.elevated,
+[data-md-color-scheme="slate"] .calc-badge.asymmetric {
+    background: rgba(255, 152, 0, 0.25);
+    color: #ffb74d;
+}
+
+[data-md-color-scheme="slate"] .calc-badge.severe {
+    background: rgba(244, 67, 54, 0.25);
+    color: #ef5350;
+}
+
+[data-md-color-scheme="slate"] .calc-badge.shunt-rl {
+    background: rgba(33, 150, 243, 0.25);
+    color: #64b5f6;
+}
+
+/* ============================================================
+   DARK MODE ADJUSTMENTS
+   ============================================================ */
+
+[data-md-color-scheme="slate"] .calc-landing-card,
+[data-md-color-scheme="slate"] .calc-card {
+    background: var(--md-code-bg-color);
+}
+
+[data-md-color-scheme="slate"] .flow-results-section {
+    background: #1a202c;
+    border-color: #2d3748;
+}
+
+[data-md-color-scheme="slate"] h3,
+[data-md-color-scheme="slate"] .flow-section-title {
+    color: #63b3ed;
+    border-bottom-color: #2d3748;
+}
+
+[data-md-color-scheme="slate"] .flow-result-line {
+    background: #1a202c;
+    border-color: #2d3748;
+}
+
+[data-md-color-scheme="slate"] .flow-result-line.highlight {
+    background: #2d3748;
+    border-color: #4a5568;
+}
+
+[data-md-color-scheme="slate"] .regurg-result-item {
+    background: #1a202c;
+    border-color: #2d3748;
+}
+
+[data-md-color-scheme="slate"] .regurg-result-item.highlight {
+    background: #2d3748;
+    border-color: #ed8936;
+}
+
+[data-md-color-scheme="slate"] input[type="number"],
+[data-md-color-scheme="slate"] input[type="text"],
+[data-md-color-scheme="slate"] select,
+[data-md-color-scheme="slate"] .flow-input,
+[data-md-color-scheme="slate"] .fontan-input {
+    background: #1a202c;
+    border-color: #4a5568;
+    color: #e2e8f0;
+}
+
+[data-md-color-scheme="slate"] .flow-result-label,
+[data-md-color-scheme="slate"] .input-group label {
+    color: #a0aec0;
+}
+
+[data-md-color-scheme="slate"] .flow-result-value,
+[data-md-color-scheme="slate"] .regurg-result-value {
+    color: #e2e8f0;
+}
+
+[data-md-color-scheme="slate"] .regurg-result-label {
+    color: #63b3ed;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+.copy-report-btn,
+.copy-flow-btn {
+    background: var(--md-primary-fg-color);
+    color: white;
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: all var(--transition-fast);
+}
+
+.copy-report-btn:hover,
+.copy-flow-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.copy-report-btn.copied,
+.copy-flow-btn.copied {
+    background: #4caf50;
+}
+
+/* ============================================================
+   UTILITY CLASSES
+   ============================================================ */
+
+.calc-placeholder {
+    color: var(--md-default-fg-color--lighter);
+    font-style: italic;
+    text-align: center;
+    padding: var(--spacing-xl);
+    margin: 0;
+}
+
+.calc-error {
+    color: #c62828;
+    background: rgba(198, 40, 40, 0.1);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    border: 1px solid rgba(198, 40, 40, 0.3);
+    margin: 0;
+    font-weight: 500;
+}
+
+.calc-notes {
+    background: var(--md-code-bg-color);
+    padding: 0.75rem var(--spacing-md);
+    border-left: 4px solid var(--md-primary-fg-color);
+    margin: var(--spacing-sm) 0 var(--spacing-md) 0;
+    font-size: 0.9rem;
+    color: var(--md-default-fg-color);
+    border-radius: var(--border-radius-sm);
+}
+
+.calc-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    padding: 0.75rem 0;
+    border-top: 1px solid var(--md-default-fg-color--lightest);
+    font-size: 0.85rem;
+    color: var(--md-default-fg-color--light);
+}
+
+.calc-details span {
+    font-family: 'SF Mono', Monaco, 'Courier New', monospace;
+}
+
+.separator-row {
+    border-top: 1px solid var(--md-default-fg-color--lightest);
+    margin: var(--spacing-sm) 0;
+    height: 1px;
+    grid-column: 1 / -1;
+}
+
+/* ============================================================
+   COLLAPSIBLE SECTIONS
+   ============================================================ */
+
+.flow-patient-params-section {
+    margin: 0 0 var(--spacing-lg) 0;
+    border: 1px solid var(--md-default-fg-color--lightest);
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+}
+
+.flow-patient-params-section summary {
+    padding: 0.6rem var(--spacing-md);
+    background: var(--md-code-bg-color);
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.85rem;
+    color: var(--md-default-fg-color--light);
+    list-style: none;
+}
+
+.flow-patient-params-section summary::-webkit-details-marker {
+    display: none;
+}
+
+.flow-patient-params-section summary:before {
+    content: '▸ ';
+    display: inline-block;
+    transition: transform var(--transition-fast);
+}
+
+.flow-patient-params-section[open] summary:before {
+    transform: rotate(90deg);
+}
+
+.flow-patient-params {
+    padding: var(--spacing-md);
+    background: var(--md-default-bg-color);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.flow-param-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.flow-param-group label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--md-default-fg-color--light);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.flow-param-group .auto-value {
+    padding: var(--spacing-sm);
+    font-weight: 600;
+    color: var(--md-primary-fg-color);
+    font-size: 0.9rem;
+}
+
+/* ============================================================
+   DARK MODE ADJUSTMENTS
+   ============================================================ */
+
+[data-md-color-scheme="slate"] .calc-landing-card,
+[data-md-color-scheme="slate"] .calc-card {
+    background: var(--md-code-bg-color);
+}
+
+[data-md-color-scheme="slate"] .flow-results-section {
+    background: #1a202c;
+    border-color: #2d3748;
+}
+
+[data-md-color-scheme="slate"] h3,
+[data-md-color-scheme="slate"] .flow-section-title {
+    color: #63b3ed;
+    border-bottom-color: #2d3748;
+}
+
+[data-md-color-scheme="slate"] .flow-result-line {
+    background: #1a202c;
+    border-color: #2d3748;
+}
+
+[data-md-color-scheme="slate"] .flow-result-line.highlight {
+    background: #2d3748;
+    border-color: #4a5568;
+}
+
+[data-md-color-scheme="slate"] .regurg-result-item {
+    background: #1a202c;
+    border-color: #2d3748;
+}
+
+[data-md-color-scheme="slate"] .regurg-result-item.highlight {
+    background: #2d3748;
+    border-color: #ed8936;
+}
+
+[data-md-color-scheme="slate"] input[type="number"],
+[data-md-color-scheme="slate"] input[type="text"],
+[data-md-color-scheme="slate"] select,
+[data-md-color-scheme="slate"] .flow-input,
+[data-md-color-scheme="slate"] .fontan-input {
+    background: #1a202c;
+    border-color: #4a5568;
+    color: #e2e8f0;
+}
+
+[data-md-color-scheme="slate"] .flow-result-label,
+[data-md-color-scheme="slate"] .input-group label {
+    color: #a0aec0;
+}
+
+[data-md-color-scheme="slate"] .flow-result-value,
+[data-md-color-scheme="slate"] .regurg-result-value {
+    color: #e2e8f0;
+}
+
+[data-md-color-scheme="slate"] .regurg-result-label {
+    color: #63b3ed;
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN
+   ============================================================ */
+
+@media (max-width: 968px) {
+    .flow-calc-container,
+    .calc-body {
+        grid-template-columns: 1fr;
+        padding: var(--spacing-md);
+    }
+    
+    .flow-results-section {
+        position: static;
+        max-height: none;
+    }
+    
+    .regurg-results-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .flow-result-line {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
+    
+    .flow-result-badge {
+        justify-content: flex-start;
+    }
+    
+    .input-row,
+    .calc-input-stack .input-row {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xs);
+    }
+    
+    .flow-params-row {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .hero-btn {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .calc-landing-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .flow-patient-params {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================================
+   PRINT STYLES
+   ============================================================ */
+
+@media print {
+    .copy-report-btn,
+    .copy-flow-btn,
+    .hero-buttons,
+    .flow-tabs {
+        display: none;
+    }
+    
+    .flow-calc-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .flow-results-section {
+        position: static;
+        max-height: none;
+        page-break-inside: avoid;
+    }
+}
