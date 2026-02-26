@@ -49,6 +49,7 @@ Convert between peak velocity and pressure gradient using the simplified Bernoul
       <thead>
         <tr>
           <th>Severity</th>
+          <th>Valve Area (cm²)</th>
           <th>V<sub>max</sub> (m/s)</th>
           <th>Peak Gradient (mmHg)</th>
           <th>Mean Gradient (mmHg)</th>
@@ -57,24 +58,28 @@ Convert between peak velocity and pressure gradient using the simplified Bernoul
       <tbody>
         <tr>
           <td>Normal</td>
+          <td>≥2.0</td>
           <td>&lt;2.0</td>
           <td>&lt;10</td>
           <td>&lt;5</td>
         </tr>
         <tr>
           <td>Mild</td>
+          <td>1.6–2.0</td>
           <td>2.0–2.9</td>
           <td>16–36</td>
           <td>&lt;25</td>
         </tr>
         <tr>
           <td>Moderate</td>
+          <td>1.0–1.5</td>
           <td>3.0–3.9</td>
           <td>36–64</td>
           <td>25–40</td>
         </tr>
         <tr>
           <td>Severe</td>
+          <td>&lt;1.0 or indexed &lt;0.6</td>
           <td>≥4.0</td>
           <td>≥64</td>
           <td>≥40</td>
@@ -88,35 +93,35 @@ Convert between peak velocity and pressure gradient using the simplified Bernoul
       <thead>
         <tr>
           <th>Severity</th>
-          <th>V<sub>max</sub> (m/s)</th>
-          <th>Mean Gradient (mmHg)</th>
           <th>MVA (cm²)</th>
+          <th>Mean Gradient (mmHg)</th>
+          <th>PAP (mmHg)</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>Normal</td>
-          <td>&lt;1.0</td>
-          <td>&lt;5</td>
           <td>&gt;2.0</td>
+          <td>--</td>
+          <td>--</td>
         </tr>
         <tr>
           <td>Mild</td>
-          <td>1.0–1.4</td>
-          <td>5–10</td>
           <td>1.5–2.0</td>
+          <td>&lt;5</td>
+          <td>&lt;30</td>
         </tr>
         <tr>
           <td>Moderate</td>
-          <td>1.5–2.2</td>
-          <td>10–15</td>
           <td>1.0–1.5</td>
+          <td>5–10</td>
+          <td>30–50</td>
         </tr>
         <tr>
           <td>Severe</td>
-          <td>≥2.5</td>
-          <td>≥15</td>
           <td>&lt;1.0</td>
+          <td>&gt;10</td>
+          <td>&gt;50</td>
         </tr>
       </tbody>
     </table>
@@ -155,26 +160,16 @@ Convert between peak velocity and pressure gradient using the simplified Bernoul
     <table>
       <thead>
         <tr>
-          <th>Severity</th>
-          <th>Peak Gradient (mmHg)</th>
+          <th>Category</th>
+          <th>Mean Gradient (mmHg)</th>
+          <th>Valve Area (cm²)</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Normal</td>
-          <td>&lt;5</td>
-        </tr>
-        <tr>
-          <td>Mild</td>
-          <td>5–10</td>
-        </tr>
-        <tr>
-          <td>Moderate</td>
-          <td>10–20</td>
-        </tr>
-        <tr>
-          <td>Severe</td>
-          <td>&gt;20</td>
+          <td>Hemodynamically Significant</td>
+          <td>&gt;5</td>
+          <td>&lt;1.0</td>
         </tr>
       </tbody>
     </table>
