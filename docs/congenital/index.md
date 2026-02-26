@@ -1,5 +1,7 @@
 ---
 title: Congenital Heart Disease
+hide:
+    -toc
 ---
 
 # Congenital Heart Disease
