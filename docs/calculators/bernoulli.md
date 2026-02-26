@@ -1,5 +1,7 @@
 ---
 title: Simplified Bernoulli
+hide:
+  -toc
 ---
 
 # Simplified Bernoulli
