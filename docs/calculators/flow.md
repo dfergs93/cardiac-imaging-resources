@@ -72,6 +72,19 @@ Enter measurements from 4D Flow MRI or 2D Phase Contrast. All inputs in L/min. S
                   <input type="text" id="std-rpa-net" class="flow-input">
               </div>
               <h3>Regurgitation (optional)</h3>
+              <details class="flow-stroke-volume-section">
+                  <summary>Stroke Volumes <span class="optional">(optional)</span></summary>
+                  <div class="input-row">
+                      <div class="input-group">
+                          <label for="std-lvsv">LVSV (mL)</label>
+                          <input type="number" id="std-lvsv" class="flow-input" step="1" placeholder="Optional">
+                      </div>
+                      <div class="input-group">
+                          <label for="std-rvsv">RVSV (mL)</label>
+                          <input type="number" id="std-rvsv" class="flow-input" step="1" placeholder="Optional">
+                      </div>
+                  </div>
+              </details>
               <div class="input-group">
                   <label for="std-regurg-units">Units</label>
                   <select id="std-regurg-units">
@@ -153,6 +166,19 @@ Enter measurements from 4D Flow MRI or 2D Phase Contrast. All inputs in L/min. S
                   </div>
               </div>
               <h3>Regurgitation (optional)</h3>
+              <details class="flow-stroke-volume-section">
+                  <summary>Stroke Volumes <span class="optional">(optional)</span></summary>
+                  <div class="input-row">
+                      <div class="input-group">
+                          <label for="fon-lvsv">LVSV (mL)</label>
+                          <input type="number" id="fon-lvsv" class="fontan-input" step="1" placeholder="Optional">
+                      </div>
+                      <div class="input-group">
+                          <label for="fon-rvsv">RVSV (mL)</label>
+                          <input type="number" id="fon-rvsv" class="fontan-input" step="1" placeholder="Optional">
+                      </div>
+                  </div>
+              </details>
               <div class="input-group">
                   <label for="fon-regurg-units">Units</label>
                   <select id="fon-regurg-units">

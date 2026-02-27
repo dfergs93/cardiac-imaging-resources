@@ -323,13 +323,39 @@ function calcStandardFlow() {
 
     const arIn = fVal('std-ar-vol');
     const prIn = fVal('std-pr-vol');
-    const mrIn = fVal('std-mr-vol');
-    const trIn = fVal('std-tr-vol');
+    let mrIn = fVal('std-mr-vol');
+    let trIn = fVal('std-tr-vol');
+
+    // Support LVSV/RVSV calculation
+    const lvsv = fVal('std-lvsv');
+    const rvsv = fVal('std-rvsv');
 
     const arFlow = regurgToLmin(arIn, regUnits, hr);
     const prFlow = regurgToLmin(prIn, regUnits, hr);
-    const mrFlow = regurgToLmin(mrIn, regUnits, hr);
-    const trFlow = regurgToLmin(trIn, regUnits, hr);
+
+    // Calculate forward flows from net + regurgitant volumes
+    const aoForward = (!isNaN(aoNet.mid)) ? aoNet.mid + (!isNaN(arFlow) ? arFlow : 0) : NaN;
+    const paForward = (!isNaN(paNet.mid)) ? paNet.mid + (!isNaN(prFlow) ? prFlow : 0) : NaN;
+
+    // Calculate MR from LVSV - AVFF if LVSV provided and MR not directly entered
+    if (!isNaN(lvsv) && isNaN(mrIn) && !isNaN(aoForward) && aoForward > 0 && !isNaN(hr) && hr > 0) {
+        // Convert aoForward (L/min) to mL/beat for comparison with LVSV
+        const aoForwardMlBeat = (aoForward * 1000) / hr;
+        mrIn = lvsv - aoForwardMlBeat;  // in mL/beat
+        if (mrIn < 0) mrIn = 0;
+    }
+
+    // Calculate TR from RVSV - PVFF if RVSV provided and TR not directly entered
+    if (!isNaN(rvsv) && isNaN(trIn) && !isNaN(paForward) && paForward > 0 && !isNaN(hr) && hr > 0) {
+        // Convert paForward (L/min) to mL/beat for comparison with RVSV
+        const paForwardMlBeat = (paForward * 1000) / hr;
+        trIn = rvsv - paForwardMlBeat;  // in mL/beat
+        if (trIn < 0) trIn = 0;
+    }
+
+    // Convert MR and TR - auto-calculated values are ALWAYS in mL/beat
+    const mrFlow = !isNaN(mrIn) ? regurgToLmin(mrIn, 'mlbeat', hr) : NaN;
+    const trFlow = !isNaN(trIn) ? regurgToLmin(trIn, 'mlbeat', hr) : NaN;
 
     const resultEl = el('flow-std-result');
     if (!resultEl) return;
@@ -340,10 +366,6 @@ function calcStandardFlow() {
         resultEl.innerHTML = '<p class="calc-placeholder">Enter vessel flows to compute results.</p>';
         return;
     }
-
-    // Calculate forward flows from net + regurgitant volumes
-    const aoForward = (!isNaN(aoNet.mid)) ? aoNet.mid + (!isNaN(arFlow) ? arFlow : 0) : NaN;
-    const paForward = (!isNaN(paNet.mid)) ? paNet.mid + (!isNaN(prFlow) ? prFlow : 0) : NaN;
 
     // Qp and Qs (using NET flows for shunt calculation)
     const qp = !isNaN(paNet.mid) ? paNet.mid : (!isNaN(lpaNet.mid) && !isNaN(rpaNet.mid) ? lpaNet.mid + rpaNet.mid : NaN);
@@ -436,8 +458,8 @@ function calcStandardFlow() {
     }
 
     // Mitral Regurgitation
-    if (!isNaN(mrIn) && mrIn > 0 && !isNaN(aoForward) && aoForward > 0) {
-        const mrRf = mrFlow / aoForward * 100;
+    if (!isNaN(mrIn) && mrIn > 0 && !isNaN(aoNet.mid) && aoNet.mid > 0) {
+        const mrRf = mrFlow / (aoNet.mid+mrFlow) * 100;
         const mrCls = mrRf < 20 ? 'mild' : mrRf < 40 ? 'moderate' : 'severe';
         const highlight = mrRf >= 40 ? 'highlight' : '';
         regurgItems.push({
@@ -467,12 +489,9 @@ function calcStandardFlow() {
 
     // Tricuspid Regurgitation - graded by absolute volume (mL/beat)
     if (!isNaN(trIn) && trIn > 0) {
-        let trVolMlBeat;
-        if (regUnits === 'mlbeat') {
-            trVolMlBeat = trIn;
-        } else {
-            trVolMlBeat = !isNaN(hr) && hr > 0 ? (trIn * 1000 / hr) : NaN;
-        }
+        // trFlow is already converted to L/min via regurgToLmin(trIn, 'mlbeat', hr)
+        // Convert back to mL/beat for grading
+        let trVolMlBeat = !isNaN(hr) && hr > 0 ? (trFlow * 1000 / hr) : NaN;
         
         if (!isNaN(trVolMlBeat)) {
             let trCls, trGrade;
@@ -489,8 +508,8 @@ function calcStandardFlow() {
             
             let rfText = '';
             let trRf = NaN;
-            if (!isNaN(paForward) && paForward > 0) {
-                trRf = trFlow / paForward * 100;
+            if (!isNaN(paNet.mid) && paNet.mid > 0) {
+                trRf = trFlow / (paNet.mid+trFlow) * 100;
                 rfText = `, RF ${trRf.toFixed(0)}%`;
             }
             
@@ -610,13 +629,39 @@ function calcFontanFlow() {
 
     const arIn = fVal('fon-ar-vol');
     const prIn = fVal('fon-pr-vol');
-    const mrIn = fVal('fon-mr-vol');
-    const trIn = fVal('fon-tr-vol');
+    let mrIn = fVal('fon-mr-vol');
+    let trIn = fVal('fon-tr-vol');
+
+    // Support LVSV/RVSV calculation
+    const lvsv = fVal('fon-lvsv');
+    const rvsv = fVal('fon-rvsv');
 
     const arFlow = regurgToLmin(arIn, regUnits, hr);
     const prFlow = regurgToLmin(prIn, regUnits, hr);
-    const mrFlow = regurgToLmin(mrIn, regUnits, hr);
-    const trFlow = regurgToLmin(trIn, regUnits, hr);
+    
+    // Calculate forward flows from net + regurgitant volumes
+    const aoForward = (!isNaN(aoNet.mid)) ? aoNet.mid + (!isNaN(arFlow) ? arFlow : 0) : NaN;
+    const paForward = (!isNaN(paNet.mid)) ? paNet.mid + (!isNaN(prFlow) ? prFlow : 0) : NaN;
+
+    // Calculate MR from LVSV - AVFF if LVSV provided and MR not directly entered
+    if (!isNaN(lvsv) && isNaN(mrIn) && !isNaN(aoForward) && aoForward > 0 && !isNaN(hr) && hr > 0) {
+        // Convert aoForward (L/min) to mL/beat for comparison with LVSV
+        const aoForwardMlBeat = (aoForward * 1000) / hr;
+        mrIn = lvsv - aoForwardMlBeat;  // in mL/beat
+        if (mrIn < 0) mrIn = 0;
+    }
+
+    // Calculate TR from RVSV - PVFF if RVSV provided and TR not directly entered
+    if (!isNaN(rvsv) && isNaN(trIn) && !isNaN(paForward) && paForward > 0 && !isNaN(hr) && hr > 0) {
+        // Convert paForward (L/min) to mL/beat for comparison with RVSV
+        const paForwardMlBeat = (paForward * 1000) / hr;
+        trIn = rvsv - paForwardMlBeat;  // in mL/beat
+        if (trIn < 0) trIn = 0;
+    }
+
+    // Convert MR and TR - auto-calculated values are ALWAYS in mL/beat
+    const mrFlow = !isNaN(mrIn) ? regurgToLmin(mrIn, 'mlbeat', hr) : NaN;
+    const trFlow = !isNaN(trIn) ? regurgToLmin(trIn, 'mlbeat', hr) : NaN;
 
     const resultEl = el('flow-fontan-result');
     if (!resultEl) return;
@@ -628,10 +673,6 @@ function calcFontanFlow() {
         resultEl.innerHTML = '<p class="calc-placeholder">Enter Fontan circuit flows to compute results.</p>';
         return;
     }
-
-    // Calculate forward flows
-    const aoForward = (!isNaN(aoNet.mid)) ? aoNet.mid + (!isNaN(arFlow) ? arFlow : 0) : NaN;
-    const paForward = (!isNaN(paNet.mid)) ? paNet.mid + (!isNaN(prFlow) ? prFlow : 0) : NaN;
 
     // Calculate totals
     const glennOk = !isNaN(glennNet.mid) && glennNet.mid > 0;
@@ -891,8 +932,8 @@ function calcFontanFlow() {
     }
 
     // Mitral Regurgitation
-    if (!isNaN(mrIn) && mrIn > 0 && !isNaN(aoForward) && aoForward > 0) {
-        const mrRf = mrFlow / aoForward * 100;
+    if (!isNaN(mrIn) && mrIn > 0 && !isNaN(aoNet.mid) && aoNet.mid > 0) {
+        const mrRf = mrFlow / (aoNet.mid + mrFlow) * 100;
         const mrCls = mrRf < 20 ? 'mild' : mrRf < 40 ? 'moderate' : 'severe';
         const highlight = mrRf >= 40 ? 'highlight' : '';
         regurgItems.push({
@@ -920,14 +961,11 @@ function calcFontanFlow() {
         });
     }
 
-    // Tricuspid Regurgitation
+    // Tricuspid Regurgitation - graded by absolute volume (mL/beat)
     if (!isNaN(trIn) && trIn > 0) {
-        let trVolMlBeat;
-        if (regUnits === 'mlbeat') {
-            trVolMlBeat = trIn;
-        } else {
-            trVolMlBeat = !isNaN(hr) && hr > 0 ? (trIn * 1000 / hr) : NaN;
-        }
+        // trFlow is already converted to L/min via regurgToLmin(trIn, 'mlbeat', hr)
+        // Convert back to mL/beat for grading
+        let trVolMlBeat = !isNaN(hr) && hr > 0 ? (trFlow * 1000 / hr) : NaN;
         
         if (!isNaN(trVolMlBeat)) {
             let trCls, trGrade;
@@ -944,9 +982,9 @@ function calcFontanFlow() {
             
             let rfText = '';
             let trRf = NaN;
-            if (!isNaN(paForward) && paForward > 0) {
-                trRf = trFlow / paForward * 100;
-                rfText = `, regurgitant fraction ${trRf.toFixed(0)}%`;
+            if (!isNaN(paNet.mid) && paNet.mid > 0) {
+                trRf = trFlow / (paNet.mid + trFlow) * 100;
+                rfText = `, RF ${trRf.toFixed(0)}%`;
             }
             
             const highlight = trCls === 'severe' ? 'highlight' : '';
