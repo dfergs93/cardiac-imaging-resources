@@ -16,7 +16,6 @@ Convert between peak velocity and pressure gradient using the simplified Bernoul
   <div class="calc-header bern-header">
     <div>
       <h2>Velocity ↔ Pressure Gradient</h2>
-      <p>Convert between peak velocity and pressure gradient using ΔP = 4V²</p>
     </div>
   </div>
   <div class="calc-body">

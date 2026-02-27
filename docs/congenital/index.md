@@ -13,6 +13,8 @@ CMR reporting template and reference for imaging pearls in common CHD entities.
         <button class="chd-tab-btn active" data-tab="normal" data-lesion="normal">Normal</button>
         <button class="chd-tab-btn" data-tab="tof" data-lesion="tof">TOF</button>
         <button class="chd-tab-btn" data-tab="tga" data-lesion="tga">TGA</button>
+        <button class="chd-tab-btn" data-tab="cctga" data-lesion="cctga">ccTGA</button>
+        <button class="chd-tab-btn" data-tab="dorv" data-lesion="dorv">DORV</button>
         <button class="chd-tab-btn" data-tab="asd" data-lesion="asd">ASD</button>
         <button class="chd-tab-btn" data-tab="vsd" data-lesion="vsd">VSD</button>
         <button class="chd-tab-btn" data-tab="fontan" data-lesion="fontan">Fontan</button>
@@ -63,6 +65,8 @@ CMR reporting template and reference for imaging pearls in common CHD entities.
 
 - [Tetralogy of Fallot (TOF)](tof.md)
 - [Transposition of the Great Arteries (TGA)](tga.md)
+- [Congenitally Corrected TGA (ccTGA)](cctga.md)
+- [Double Outlet Right Ventricle (DORV)](dorv.md)
 - [Atrial Septal Defect (ASD)](asd.md)
 - [Ventricular Septal Defect (VSD)](vsd.md)
 - [Fontan Circulation](fontan.md)

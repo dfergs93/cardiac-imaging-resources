@@ -675,6 +675,22 @@ function calcFontanFlow() {
         reportLines.push(`PA Flow: ${qp.toFixed(2)} L/min${qpIndexed ? `, ${qpIndexed} L/min/m²` : ''}`);
     }
 
+    // Qp:Qs
+    if (!isNaN(qp) && !isNaN(qs) && qs > 0) {
+        const ratio = qp / qs;
+        let shuntType = '';
+        if (ratio > 1.1) shuntType = 'L→R shunt';
+        else if (ratio < 0.9) shuntType = 'R→L shunt';
+        else shuntType = 'No shunt';
+
+        html += `<div class="flow-result-line highlight">
+            <span class="flow-result-label">Qp:Qs</span>
+            <span class="flow-result-value">${ratio.toFixed(2)}</span>
+            <span class="flow-result-badge">${qpqsBadge(ratio)}</span>
+        </div>`;
+        reportLines.push(`Qp:Qs: ${ratio.toFixed(2)} (${shuntType})`);
+    }
+
     // RPA/LPA Split
     if (!isNaN(lpaNet.mid) && !isNaN(rpaNet.mid) && qp > 0) {
         const lPct = (lpaNet.mid / qp * 100).toFixed(0);

@@ -162,21 +162,21 @@ Enter measurements from 4D Flow MRI or 2D Phase Contrast. All inputs in L/min. S
               </div>
               <div class="input-row">
                   <div class="input-group">
-                      <label for="fon-ar-vol">AR</label>
+                      <label for="fon-ar-vol">Aortic</label>
                       <input type="number" id="fon-ar-vol" class="fontan-input" step="0.1">
                   </div>
                   <div class="input-group">
-                      <label for="fon-mr-vol">MR</label>
+                      <label for="fon-mr-vol">Mitral</label>
                       <input type="number" id="fon-mr-vol" class="fontan-input" step="0.1">
                   </div>
               </div>
               <div class="input-row">
                   <div class="input-group">
-                      <label for="fon-pr-vol">PR</label>
+                      <label for="fon-pr-vol">Pulmonary</label>
                       <input type="number" id="fon-pr-vol" class="fontan-input" step="0.1">
                   </div>
                   <div class="input-group">
-                      <label for="fon-tr-vol">TR</label>
+                      <label for="fon-tr-vol">Tricuspid</label>
                       <input type="number" id="fon-tr-vol" class="fontan-input" step="0.1">
                   </div>
               </div>

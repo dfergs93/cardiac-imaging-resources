@@ -43,6 +43,32 @@ const templateData = {
         pa: "Pulmonary artery arises posteriorly from the morphologic left ventricle. [Post-ASO: assess for branch PA stenosis].",
         misc: "D-Transposition of the great arteries. [If post-ASO: arterial switch operation with Lecompte maneuver. Assess coronary reimplantation sites and neo-aortic valve]."
     },
+    cctga: {
+        situs: "Situs solitus [or heterotaxy].",
+        cavae: "Single right-sided SVC and single right-sided IVC drain to the morphologic left atrium unobstructed. [Assess for anomalous cavae drainage].",
+        pv: "[Typically] Two pulmonary veins drain to the morphologic right atrium. [Anomalous pulmonary venous return common - assess carefully].",
+        atria: "[Atrial arrangement is inverted/mirror-image of normal]. Morphologic right atrium receives pulmonary venous return. Morphologic left atrium receives systemic venous return. [Assess for atrial septal defect].",
+        av: "Discordant. Morphologic right atrium connects to morphologic left ventricle via mitral valve. Morphologic left atrium connects to morphologic right ventricle via tricuspid valve. [Assess for left AV valve (mitral) regurgitation and Ebstein-like tricuspid malposition].",
+        ventricles: "L-loop with levocardia (normally positioned despite inverted connections). Morphologic right ventricle is in left position and acts as systemic ventricle (morphologic LV hypoplasia common). Morphologic left ventricle is in right position and acts as subpulmonary ventricle. [Assess for ventricular septal defect and interventricular communication].",
+        va: "Discordant. Morphologic left ventricle (subpulmonary) gives rise to posteriorly positioned aorta (arising from left-sided ventricle). Morphologic right ventricle (systemic) gives rise to anteriorly positioned pulmonary artery (arising from right-sided ventricle).",
+        coronary: "[Right coronary artery typically arises from left-facing sinus]. Coronary pattern typically mirror-image of normal (1R from left, 1LCx from right). [Critical for surgical planning].",
+        aorta: "Aorta arises from morphologic left ventricle (subpulmonary, in right position). Characteristically posterior and to the left. [Assess for aortic root dilation and aortic regurgitation].",
+        pa: "Pulmonary artery arises from morphologic right ventricle (systemic, in left position), anteriorly positioned. [Assess for branch PA stenosis; reduced flow if subaortic stenosis present].",
+        misc: "Congenitally corrected transposition (L-TGA/ccTGA) with discordant AV and ventriculoarterial connections. Associated findings: [specify VSD, left AV valve regurgitation, subaortic stenosis, conduction abnormalities]. Systemic right ventricle predisposes to ventricular dysfunction and may eventually require double switch or heart transplantation."
+    },
+    dorv: {
+        situs: "Situs solitus [or heterotaxy].",
+        cavae: "Single right-sided SVC and single right-sided IVC drain to the right atrium unobstructed. [For heterotaxy: assess carefully].",
+        pv: "Two right-sided pulmonary vein(s) and Two left-sided pulmonary vein(s) drain to the left atrium. [Assess for anomalous pulmonary venous return].",
+        atria: "No gross interatrial communication. [May have associated atrial septal defect].",
+        av: "Concordant. Right atrium connects to morphologic right ventricle via tricuspid valve. Left atrium connects to morphologic left ventricle via mitral valve.",
+        ventricles: "D-loop with levocardia. Both aorta and pulmonary artery arise predominantly or completely from the morphologic right ventricle. [Assess for ventricular septal defect and type: subarterial/doubly committed, perimembranous, or remote].",
+        va: "Discordant from left ventricle perspective. Aorta and pulmonary artery both arise from the right ventricle. Relationship of great arteries: [anterior-posterior, side-by-side, or aorta posterior and to the right]. Left ventricle contribution to aorta or pulmonary artery: [specify if present - rare].",
+        coronary: "Coronary arteries originating from expected sinuses, though variable given the abnormal great artery positioning. [Assess coronary ostia carefully relative to aortic root].",
+        aorta: "Aorta arises predominantly or entirely from the morphologic right ventricle. Position: [specify - anterior-posterior, side-by-side, posterior and to the right, etc.].",
+        pa: "Pulmonary artery arises predominantly or entirely from the morphologic right ventricle. [Often hypoplastic]. Systemic-to-pulmonary connection via VSD is essential for survival.",
+        misc: "Double Outlet Right Ventricle (DORV) with [specify VSD type and relationship to great arteries]. Associated: [heterotaxy/isomerism, cardiac malpositions, other CHD]. Surgical repair destination typically depends on VSD position and relationshop to pulmonary artery."
+    },
     asd: {
         situs: "Situs solitus.",
         cavae: "Single right-sided SVC and single right-sided IVC drain to the right atrium unobstructed. [For sinus venosus ASD: defect at SVC or IVC junction to right atrium].",

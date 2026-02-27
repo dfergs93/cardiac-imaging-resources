@@ -44,7 +44,9 @@ nav:
   - Congenital HD:
     - Overview & Segmental Analysis: congenital/index.md
     - Tetralogy of Fallot: congenital/tof.md
-    - Transposition (TGA): congenital/tga.md
+    - D-Transposition (TGA): congenital/tga.md
+    - Congenitally Corrected Transposition (ccTGA): congenital/cctga.md
+    - Double Outlet Right Ventricle: congenital/dorv.md
     - Atrial Septal Defect: congenital/asd.md
     - Ventricular Septal Defect: congenital/vsd.md
     - Fontan Circulation: congenital/fontan.md
