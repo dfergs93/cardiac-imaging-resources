@@ -330,15 +330,25 @@ function calcStandardFlow() {
     const lvsv = fVal('std-lvsv');
     const rvsv = fVal('std-rvsv');
 
+    // Track whether MR/TR were user-entered or calculated
+    const mrUserEntered = !isNaN(mrIn);
+    const trUserEntered = !isNaN(trIn);
+
     const arFlow = regurgToLmin(arIn, regUnits, hr);
     const prFlow = regurgToLmin(prIn, regUnits, hr);
 
+    // Qp and Qs (using NET flows for shunt calculation)
+    const qp = (!isNaN(lpaNet.mid) && !isNaN(rpaNet.mid)) ? lpaNet.mid + rpaNet.mid : (!isNaN(paNet.mid) ? paNet.mid : NaN);
+    const qs = !isNaN(aoNet.mid) ? aoNet.mid : NaN;
+
     // Calculate forward flows from net + regurgitant volumes
     const aoForward = (!isNaN(aoNet.mid)) ? aoNet.mid + (!isNaN(arFlow) ? arFlow : 0) : NaN;
-    const paForward = (!isNaN(paNet.mid)) ? paNet.mid + (!isNaN(prFlow) ? prFlow : 0) : NaN;
+    // Use MPA if available, otherwise fall back to LPA+RPA sum
+    const paNetBase = !isNaN(paNet.mid) ? paNet.mid : qp;
+    const paForward = (!isNaN(paNetBase)) ? paNetBase + (!isNaN(prFlow) ? prFlow : 0) : NaN;
 
     // Calculate MR from LVSV - AVFF if LVSV provided and MR not directly entered
-    if (!isNaN(lvsv) && isNaN(mrIn) && !isNaN(aoForward) && aoForward > 0 && !isNaN(hr) && hr > 0) {
+    if (!isNaN(lvsv) && !mrUserEntered && !isNaN(aoForward) && aoForward > 0 && !isNaN(hr) && hr > 0) {
         // Convert aoForward (L/min) to mL/beat for comparison with LVSV
         const aoForwardMlBeat = (aoForward * 1000) / hr;
         mrIn = lvsv - aoForwardMlBeat;  // in mL/beat
@@ -346,16 +356,16 @@ function calcStandardFlow() {
     }
 
     // Calculate TR from RVSV - PVFF if RVSV provided and TR not directly entered
-    if (!isNaN(rvsv) && isNaN(trIn) && !isNaN(paForward) && paForward > 0 && !isNaN(hr) && hr > 0) {
+    if (!isNaN(rvsv) && !trUserEntered && !isNaN(paForward) && paForward > 0 && !isNaN(hr) && hr > 0) {
         // Convert paForward (L/min) to mL/beat for comparison with RVSV
         const paForwardMlBeat = (paForward * 1000) / hr;
         trIn = rvsv - paForwardMlBeat;  // in mL/beat
         if (trIn < 0) trIn = 0;
     }
 
-    // Convert MR and TR - auto-calculated values are ALWAYS in mL/beat
-    const mrFlow = !isNaN(mrIn) ? regurgToLmin(mrIn, 'mlbeat', hr) : NaN;
-    const trFlow = !isNaN(trIn) ? regurgToLmin(trIn, 'mlbeat', hr) : NaN;
+    // Convert flows - auto-calculated MR/TR are in mL/beat, user-entered ones follow regUnits
+    const mrFlow = !isNaN(mrIn) ? regurgToLmin(mrIn, mrUserEntered ? regUnits : 'mlbeat', hr) : NaN;
+    const trFlow = !isNaN(trIn) ? regurgToLmin(trIn, trUserEntered ? regUnits : 'mlbeat', hr) : NaN;
 
     const resultEl = el('flow-std-result');
     if (!resultEl) return;
@@ -366,10 +376,6 @@ function calcStandardFlow() {
         resultEl.innerHTML = '<p class="calc-placeholder">Enter vessel flows to compute results.</p>';
         return;
     }
-
-    // Qp and Qs (using NET flows for shunt calculation)
-    const qp = !isNaN(paNet.mid) ? paNet.mid : (!isNaN(lpaNet.mid) && !isNaN(rpaNet.mid) ? lpaNet.mid + rpaNet.mid : NaN);
-    const qs = !isNaN(aoNet.mid) ? aoNet.mid : NaN;
 
     // Build report text
     let reportLines = [];
@@ -489,40 +495,33 @@ function calcStandardFlow() {
 
     // Tricuspid Regurgitation - graded by absolute volume (mL/beat)
     if (!isNaN(trIn) && trIn > 0) {
-        // trFlow is already converted to L/min via regurgToLmin(trIn, 'mlbeat', hr)
+        // trFlow is already converted to L/min
         // Convert back to mL/beat for grading
         let trVolMlBeat = !isNaN(hr) && hr > 0 ? (trFlow * 1000 / hr) : NaN;
         
         if (!isNaN(trVolMlBeat)) {
-            let trCls, trGrade;
+            let trCls;
             if (trVolMlBeat < 30) {
                 trCls = 'mild';
-                trGrade = 'Mild';
             } else if (trVolMlBeat < 45) {
                 trCls = 'moderate';
-                trGrade = 'Moderate';
             } else {
                 trCls = 'severe';
-                trGrade = 'Severe';
             }
             
-            let rfText = '';
             let trRf = NaN;
-            if (!isNaN(paNet.mid) && paNet.mid > 0) {
-                trRf = trFlow / (paNet.mid+trFlow) * 100;
-                rfText = `, RF ${trRf.toFixed(0)}%`;
+            if (!isNaN(paForward) && paForward > 0) {
+                trRf = trFlow / paForward * 100;
             }
             
             const highlight = trCls === 'severe' ? 'highlight' : '';
             regurgItems.push({
                 label: 'Tricuspid Regurgitation',
-                value: `${trVolMlBeat.toFixed(1)} mL/beat`,
+                value: fmtFlowWithBeat(trFlow, hr),
                 rf: trRf,
                 cls: trCls,
-                grade: trGrade,
                 highlight: highlight,
-                rfText: rfText,
-                reportText: `  Tricuspid: ${trVolMlBeat.toFixed(1)} mL/beat (${trGrade})${rfText}`
+                reportText: `  Tricuspid: ${fmtFlowWithBeat(trFlow, hr)}${!isNaN(trRf) ? `, RF ${trRf.toFixed(0)}%` : ''}`
             });
         }
     }
@@ -538,17 +537,15 @@ function calcStandardFlow() {
         
         regurgOrder.forEach(regurgName => {
             const item = regurgItems.find(r => r.label === regurgName);
-            
 
             if (item) {
-                const badgeLabel = item.grade || item.cls.charAt(0).toUpperCase() + item.cls.slice(1);
+                const badgeLabel = item.cls.charAt(0).toUpperCase() + item.cls.slice(1);
                 html += `<div class="regurg-result-item ${item.highlight}">
                     <span class="regurg-result-label">${item.label}</span>
                     <div>
                         <span class="regurg-result-value">${item.value}</span>
-                        ${!isNaN(item.rf) && item.label !== 'Tricuspid Regurgitation' ? 
-                            `<span class="regurg-result-value">RF ${item.rf.toFixed(0)}%</span>` : 
-                            item.rfText ? `<span class="regurg-result-value">${item.rfText.replace(', ', '')}</span>` : ''
+                        ${!isNaN(item.rf) ? 
+                            `<span class="regurg-result-value">RF ${item.rf.toFixed(0)}%</span>` : ''
                         }
                     </div>
                     <span class="regurg-result-badge">
@@ -636,6 +633,10 @@ function calcFontanFlow() {
     const lvsv = fVal('fon-lvsv');
     const rvsv = fVal('fon-rvsv');
 
+    // Track whether MR/TR were user-entered or calculated
+    const mrUserEntered = !isNaN(fVal('fon-mr-vol'));
+    const trUserEntered = !isNaN(fVal('fon-tr-vol'));
+
     const arFlow = regurgToLmin(arIn, regUnits, hr);
     const prFlow = regurgToLmin(prIn, regUnits, hr);
     
@@ -659,9 +660,9 @@ function calcFontanFlow() {
         if (trIn < 0) trIn = 0;
     }
 
-    // Convert MR and TR - auto-calculated values are ALWAYS in mL/beat
-    const mrFlow = !isNaN(mrIn) ? regurgToLmin(mrIn, 'mlbeat', hr) : NaN;
-    const trFlow = !isNaN(trIn) ? regurgToLmin(trIn, 'mlbeat', hr) : NaN;
+    // Convert flows - auto-calculated MR/TR are in mL/beat, user-entered ones follow regUnits
+    const mrFlow = !isNaN(mrIn) ? regurgToLmin(mrIn, mrUserEntered ? regUnits : 'mlbeat', hr) : NaN;
+    const trFlow = !isNaN(trIn) ? regurgToLmin(trIn, trUserEntered ? regUnits : 'mlbeat', hr) : NaN;
 
     const resultEl = el('flow-fontan-result');
     if (!resultEl) return;
@@ -968,35 +969,28 @@ function calcFontanFlow() {
         let trVolMlBeat = !isNaN(hr) && hr > 0 ? (trFlow * 1000 / hr) : NaN;
         
         if (!isNaN(trVolMlBeat)) {
-            let trCls, trGrade;
+            let trCls;
             if (trVolMlBeat < 30) {
                 trCls = 'mild';
-                trGrade = 'Mild';
             } else if (trVolMlBeat < 45) {
                 trCls = 'moderate';
-                trGrade = 'Moderate';
             } else {
                 trCls = 'severe';
-                trGrade = 'Severe';
             }
             
-            let rfText = '';
             let trRf = NaN;
             if (!isNaN(paNet.mid) && paNet.mid > 0) {
                 trRf = trFlow / (paNet.mid + trFlow) * 100;
-                rfText = `, RF ${trRf.toFixed(0)}%`;
             }
             
             const highlight = trCls === 'severe' ? 'highlight' : '';
             regurgItems.push({
                 label: 'Tricuspid Regurgitation',
-                value: `${trVolMlBeat.toFixed(1)} mL/beat`,
+                value: fmtFlowWithBeat(trFlow, hr),
                 rf: trRf,
                 cls: trCls,
-                grade: trGrade,
                 highlight: highlight,
-                rfText: rfText,
-                reportText: `  Tricuspid: ${trVolMlBeat.toFixed(1)} mL/beat (${trGrade})${rfText}`
+                reportText: `  Tricuspid: ${fmtFlowWithBeat(trFlow, hr)}${!isNaN(trRf) ? `, RF ${trRf.toFixed(0)}%` : ''}`
             });
         }
     }
@@ -1013,14 +1007,13 @@ function calcFontanFlow() {
             const item = regurgItems.find(r => r.label === regurgName);
 
             if (item) {
-                const badgeLabel = item.grade || item.cls.charAt(0).toUpperCase() + item.cls.slice(1);
+                const badgeLabel = item.cls.charAt(0).toUpperCase() + item.cls.slice(1);
                 html += `<div class="regurg-result-item ${item.highlight}">
                     <span class="regurg-result-label">${item.label}</span>
                     <div>
                         <span class="regurg-result-value">${item.value}</span>
-                        ${!isNaN(item.rf) && item.label !== 'Tricuspid Regurgitation' ? 
-                            `<span class="regurg-result-value">RF ${item.rf.toFixed(0)}%</span>` : 
-                            item.rfText ? `<span class="regurg-result-value">${item.rfText.replace(', ', '')}</span>` : ''
+                        ${!isNaN(item.rf) ? 
+                            `<span class="regurg-result-value">RF ${item.rf.toFixed(0)}%</span>` : ''
                         }
                     </div>
                     <span class="regurg-result-badge">
