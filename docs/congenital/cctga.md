@@ -11,7 +11,7 @@ Congenitally corrected transposition (also called L-transposition or L-TGA) is c
 ### Key Features
 
 - **Concordance paradox**: Two levels of discordance ("double discordance") result in concordant physiology
-- **L-loop ventricles**: Left-sided morphologic left ventricle (subpulmonary), right-sided morphologic right ventricle (systemic)
+- **L-loop ventricles**: Right-sided morphologic left ventricle (subpulmonary), left-sided morphologic right ventricle (systemic)
 - **Levocardia** (normally positioned heart) with inverted chambering
 - **Associated lesions** very common: VSD, left AV valve regurgitation (systemic mitral valve), Ebstein-like tricuspid deformity, subaortic stenosis, conduction abnormalities
 
@@ -27,14 +27,14 @@ Congenitally corrected transposition (also called L-transposition or L-TGA) is c
 
 ### Venous Drainage
 
-- Systemic venous return (SVC + IVC) drains to **morphologic left atrium** (on right side)
-- Pulmonary venous return drains to **morphologic right atrium** (on left side)
+- Systemic venous return (SVC + IVC) drains to **morphologic right atrium** (on right side)
+- Pulmonary venous return drains to **morphologic left atrium** (on left side)
 - **Anomalous pulmonary venous return** is frequently associated—check all four pulmonary veins
 
 ### Atrioventricular Connections (Discordant)
 
-- **Morphologic right atrium** → **mitral valve** → **morphologic left ventricle** (subpulmonary, in left position)
-- **Morphologic left atrium** → **tricuspid valve** → **morphologic right ventricle** (systemic, in right position)
+- **Morphologic right atrium** → **mitral valve** → **morphologic left ventricle** (subpulmonary, in right position)
+- **Morphologic left atrium** → **tricuspid valve** → **morphologic right ventricle** (systemic, in left position)
 - **Systemic mitral valve regurgitation** is common (acts as systemic AV valve)
 - **Tricuspid valve abnormalities**: Ebstein-like malposition with apical displacement and dysplasia
 
@@ -42,12 +42,12 @@ Congenitally corrected transposition (also called L-transposition or L-TGA) is c
 
 - **Morphologic left ventricle** (subpulmonary):
   - Small, compact morphology
-  - In left position (appears as "RV" on echocardiography)
+  - In right position (appears as "RV" on echocardiography)
   - Gives rise to pulmonary artery
-  
+
 - **Morphologic right ventricle** (systemic):
   - Dilated, thin-walled, less compliant
-  - In right position (appears as "LV" on echocardiography)
+  - In left position (appears as "LV" on echocardiography)
   - Supports systemic circulation
   - Progressive dilation and dysfunction common in adulthood
 
@@ -57,8 +57,8 @@ Congenitally corrected transposition (also called L-transposition or L-TGA) is c
 
 ### Ventriculoarterial Connections (Discordant)
 
-- **Morphologic left ventricle** (subpulmonary) → **aorta** (posteriorly positioned, arises from left-sided ventricle)
-- **Morphologic right ventricle** (systemic) → **pulmonary artery** (anteriorly positioned, arises from right-sided ventricle)
+- **Morphologic left ventricle** (subpulmonary) → **pulmonary artery** (posteriorly positioned, arises from right-sided ventricle)
+- **Morphologic right ventricle** (systemic) → **aorta** (anteriorly positioned, arises from left-sided ventricle)
 - Great arteries typically **anterior–posterior relationship** or **side-by-side**
 
 ### Coronary Arteries
@@ -71,7 +71,7 @@ Congenitally corrected transposition (also called L-transposition or L-TGA) is c
 
 ### Aorta
 
-- Arises from **morphologic left ventricle** (in subpulmonary position but giving rise to aorta)
+- Arises from **morphologic right ventricle** (systemic, left-sided)
 - Typically **posterior and to the left** relative to pulmonary artery
 - Monitor for:
   - Aortic root dilation
@@ -103,9 +103,9 @@ Congenitally corrected transposition (also called L-transposition or L-TGA) is c
 ### Morphologic Assessment
 
 1. **Recognizing the inversion**: 
-   - Use systemic venous return to identify the morphologic left atrium (receives SVC + IVC)
+   - Use systemic venous return to identify the morphologic right atrium (receives SVC + IVC)
    - Morphologic ventricle identification: trabeculae, papillary muscles, valve attachments
-   - **L-loop**: Morphologic LV on left, morphologic RV on right (opposite of normal)
+   - **L-loop**: Morphologic LV on right, morphologic RV on left (opposite of normal)
 
 2. **Chamber size and function**:
    - Measure **systemic RV** volumes and ejection fraction (may be reduced)
