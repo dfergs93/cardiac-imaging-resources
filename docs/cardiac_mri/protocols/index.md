@@ -8,8 +8,7 @@ Overview of standard cardiac MRI protocols and the sequences used in each.
 
 | Protocol | Primary Indication | Key Sequences |
 |----------|--------------------|---------------|
-| [Cardiac Function](cardiac_function.md) | Ventricular volumes, EF, wall motion | Cine SSFP (SAX + LAX), dark blood morphology |
-| [Viability](viability.md) | Cardiomyopathy, ischemic scar, fibrosis | Function + LGE + T1 mapping (ECV) |
+| [Cardiomyopathy](cardiomyopathy.md) | HF, VT, infiltrative disease, cardiomyopathy evaluation | Cine SSFP (SAX + LAX), LGE, T1 mapping (ECV), T2 mapping |
 | [Stress Perfusion](stress_perfusion.md) | Suspected CAD, ischemia evaluation | Rest + stress perfusion, LGE |
 | [Congenital / 4D Flow](congenital_4dflow.md) | CHD, shunt quantification, flow analysis | Dark blood morphology, cine, 4D flow or 2D PC |
 | [Cardiac Masses](cardiac_masses.md) | Cardiac tumor, thrombus, pericardial mass | Multi-echo T1, T2, perfusion, LGE |

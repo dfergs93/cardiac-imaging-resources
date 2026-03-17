@@ -1,279 +1,135 @@
 ---
-title: Double Outlet Right Ventricle (DORV)
+title: Double-Outlet Right Ventricle
 ---
 
-# Double Outlet Right Ventricle (DORV)
+# Double-Outlet Right Ventricle (DORV)
 
-## Overview
+**Key anatomy/defining feature:** Both great arteries arise entirely or predominantly (>50% each) from the morphologic RV, with physiology spanning VSD → TOF → TGA → single ventricle depending on VSD location and associated lesions.
 
-Double Outlet Right Ventricle (DORV) is a rare but complex lesion in which **both the aorta and pulmonary artery arise predominantly or entirely from the morphologic right ventricle**. The morphologic left ventricle contributes minimal or no blood to the great arteries. Communication between the right and left ventricles via a **ventricular septal defect (VSD)** is essential for survival, as it provides the only outlet for left ventricular blood.
+## Anatomy & Classification
 
-### Key Features
+The VSD position relative to the great arteries determines physiology and surgical strategy:
 
-- **Both great arteries originate from the RV**: Usually >50% of each artery arises from the RV
-- **Obligatory VSD**: Systemic-to-pulmonary connection essential for survival
-- **Variable anatomy**: Great artery relationships (anterior–posterior, side-by-side, right-to-left) and VSD position vary widely
-- **Associated lesions**: Heterotaxy, pulmonary stenosis, hypoplastic pulmonary arteries, other CHD
-- **Complex surgical anatomy**: Repair strategy depends on VSD location relative to great arteries
+| VSD Location | Frequency | Physiology (like) | Typical Repair |
+|---|---|---|---|
+| **Subaortic** | ~50% | VSD (no PS) or TOF (with PS) | Intraventricular tunnel ± TOF-type repair |
+| **Subpulmonary** (Taussig-Bing) | ~30% | TGA ± CoA | Arterial switch + VSD closure |
+| **Doubly committed** | ~5% | VSD ± PS | Tunnel repair or arterial switch |
+| **Remote** (noncommitted) | Variable | Single ventricle | Fontan pathway (occasionally biventricular) |
 
----
+**Great artery relationships:** Variable — posterior/rightward (normal spiral), side-by-side (d- or l-malposition), or anterior aorta. Absence of semilunar–AV valve fibrous continuity is a distinguishing feature from TOF or TGA.
 
-## Segmental Anatomy
-
-### Situs and Orientation
-
-- Usually **situs solitus** but **heterotaxy is common** (~30% of DORV patients)
-- **Levocardia** typical, but various cardiac positions possible
-- Evaluate **splenic and visceral situs** carefully
-
-### Venous Drainage
-
-- **Systemic venous return** (SVC + IVC) typically drains to right atrium (normal)
-- **Pulmonary venous return** typically drains to left atrium (normal)
-- Anomalous pulmonary venous return possible; assess all four PVs
-
-### Atrioventricular Connections
-
-- **Concordant**: Right atrium → tricuspid valve → morphologic **right ventricle**
-- **Concordant**: Left atrium → mitral valve → morphologic **left ventricle**
-- AV connections are normal; abnormality is entirely at **ventriculoarterial level**
-
-### Ventricles
-
-- **Morphologic right ventricle** (dominant chamber):
-  - Enlarged, receives blood from both atria (via tricuspid valve) and from LV (via VSD)
-  - Gives rise to both aorta and pulmonary artery
-  - Hypertrophied walls
-
-- **Morphologic left ventricle** (hypoplastic, "unwedged"):
-  - Small chamber, "wedged" between aortic root and ventricular septum
-  - No outlet to great arteries (or minimal contribution)
-  - Blood escapes via VSD to RV
-
-- **Ventricular septal defect** (obligatory):
-  - Communication between RV and LV essential for pulmonary and systemic blood flow
-  - **VSD classification by position**:
-    - **Subarterial (doubly committed)**: Directly under both PA and aorta
-    - **Perimembranous with RV outlet extension**: Under both arteries but via membranous defect
-    - **Perimembranous with inlet extension**: Rare, further from arteries
-    - **Remote VSD**: Far from both great arteries; uncommon in DORV
-
-### Ventriculoarterial Connections (Abnormal—Both from RV)
-
-- **Aorta arises from RV**: Usually with variable degree of override from LV (typically >50% arises from RV)
-- **Pulmonary artery arises from RV**: Variable position and take-off relative to aorta
-- **Relationship of great arteries**:
-  - **Anterior–posterior**: Aorta anterior to PA, or vice versa (most common)
-  - **Side-by-side**: Aorta to the right of PA
-  - **PA appears to override VSD**: Rare but possible (mimics PA-concordant physiology)
-
-### Coronary Arteries
-
-- Coronary ostia typically arise from expected sinuses despite abnormal great artery positions
-- May be displaced or abnormally positioned in ~10–15% of cases
-- **Coronary assessment critical** before surgical planning to avoid inadvertent injury during arterial transposition
-
-### Aorta
-
-- Arises predominantly from morphologic right ventricle
-- Position variable: anterior, posterior, or side-by-side relative to pulmonary artery
-- Systemic output dependent on RV contractility and VSD flow dynamics
-- Monitor for:
-  - Aortic regurgitation
-  - Aortic root dilation (variable)
-
-### Pulmonary Arteries
-
-- Arises predominantly from morphologic right ventricle
-- Often **hypoplastic**, especially if subaortic stenosis develops
-- Pulmonary blood flow depends on:
-  - RV-to-PA flow (not LV-to-PA, as LV has no PA outlet)
-  - VSD **size and restrictiveness** (if small, limits pulmonary flow)
-  - Degree of pulmonary stenosis if present
+**Associations:** Coarctation/arch hypoplasia (especially with subpulmonary VSD, up to 50%), AV valve straddling, ventricular hypoplasia, right atrial isomerism, 22q11 deletion, trisomy 13/18.
 
 ---
 
-## DORV Classification (Surgical Perspective)
+## Post-Repair CMR Assessment
 
-The surgical approach depends on VSD location relative to the great arteries and aortic position:
+CMR assessment varies by repair type. Identify the surgical strategy before scanning.
 
-| Type | VSD Position | Aorta Position | Physiology | Surgical Approach |
-|------|-------------|----------------|-----------|-------------------|
-| **Subarterial VSD (Taussig-Bing)** | Under both PA and aorta | Anterior to PA; PA more posterior | Similar to TGA (cyanotic) | PA switch (Rastelli-like) or arterial switch |
-| **Perimembranous with anterior extension** | Under aorta primarily | Usually anterior-left | L-R shunt if no LVOTO | VSD closure ± aortic repositioning; Rastelli if needed |
-| **Perimembranous with posterior extension** | Under PA primarily | Usually posterior | L-R shunt; similar to VSD physiology | VSD closure ± PA outflow procedures |
-| **Remote VSD** | Far from both arteries | Variable | Creates challenges | Complex repair; may need conduit |
+### Measurements
 
----
+| Measurement | What to Assess | Concern / Threshold |
+|---|---|---|
+| RV EDVi / ESVi | Volumetric assessment (cine SSFP SAx stack) | RV dilation from PR, conduit regurgitation, or tunnel-related obstruction |
+| RV EF | Systolic function | <40–45% = significant dysfunction |
+| LV EDVi / EF | LV size and function | LV dysfunction from volume/pressure overload or tunnel geometry |
+| Pulmonary RF | PC flow at MPA or branch PAs | >20–25% moderate; >40% severe — threshold for reintervention |
+| RVOT / conduit gradient | PC velocity mapping at narrowing | Peak velocity >3–4 m/s suggests significant stenosis |
+| Subaortic tunnel gradient | PC velocity through LV-to-Ao baffle | Progressive obstruction common (5–50% reop rate) |
+| Branch PA flow split | PC flow LPA vs RPA | Differential perfusion from PA stenosis |
+| Aortic root dimensions | Sinuses, STJ, ascending Ao | Dilation possible post–arterial switch |
+| Neoaortic regurgitation | PC flow / cine | More common in DORV post–arterial switch vs standard TGA |
+| QRS duration (ECG) | Correlate with CMR | >180 ms = arrhythmia risk (TOF-type repairs) |
 
-## Hemodynamics and Associated Lesions
+### Key Findings by Repair Type
 
-### Degree of Cyanosis
+#### Intraventricular Tunnel Repair (Subaortic / Doubly Committed VSD)
 
-Depends on:
+- **Subaortic obstruction:** Measure peak velocity through the LV-to-Ao tunnel on PC velocity mapping. Evaluate tunnel geometry on cine SSFP (axial and coronal oblique). Progressive narrowing is a major long-term concern.
+- **Residual VSD / tunnel leak:** Look for residual shunting around the baffle (Qp:Qs by PC flow). SSFP cine and LGE may delineate patch position.
+- **RVOT obstruction:** Assess subpulmonary/valvular region if infundibular septum was resected or PS was addressed.
 
-1. **VSD size**: 
-   - Small VSD → Limited LV output to RV → Cyanosis
-   - Large VSD → Better mixing → Less cyanosis
+!!! warning "Subaortic Stenosis Risk"
+    Complex intraventricular tunnels carry the highest risk of progressive subaortic obstruction (up to 50% reintervention in subpulmonary VSD tunneled to aorta). Serial measurement of tunnel gradient is essential.
 
-2. **Relative positions of aorta and PA**:
-   - If aorta favors RV inlet → Better systemic output → Less cyanosis
-   - If aorta is "unwedged" and primarily receives RV inlet blood → Better systemic flow
+#### TOF-Type Repair (Subaortic VSD + Pulmonary Stenosis)
 
-3. **Associated pulmonary stenosis**:
-   - Decreases pulmonary flow → Increases cyanosis
+- **Pulmonary regurgitation:** Quantify PR fraction by PC flow at MPA. Drives RV dilation — same PVR thresholds as TOF (RVEDVi >150–160 mL/m² and/or RF >40%).
+- **Residual RVOT obstruction:** PC velocity at site of narrowing; assess for transannular patch or infundibular resection adequacy.
+- **RPA/LPA stenosis:** Compare branch PA flows; evaluate with MRA or 3D SSFP.
 
-### Associated Lesions
+#### Arterial Switch (Subpulmonary VSD / Taussig-Bing)
 
-| Lesion | Frequency | Significance |
-|--------|-----------|------------|
-| Pulmonary stenosis | 30–50% | Restricts pulmonary flow; worsens cyanosis |
-| AV valve abnormalities | 20–40% | TV or MV dysplasia/regurgitation |
-| Heterotaxy | ~30% | Situs inversus, asplenia, polysplenia, IVC anomalies |
-| Left AV valve regurgitation | 10–20% | Volume overload if present |
-| Hypoplastic pulmonary arteries | 20–30% | Limits surgical options |
-| Aortic regurgitation | 10–20% | From VSD proximity to aortic valve |
-| CoA or aortic stenosis | 5–10% | Additional LVOTO |
+- **Neoaortic root and valve:** Assess for progressive neoaortic regurgitation (more common in DORV than standard TGA). Measure root dimensions at annulus, sinuses, STJ.
+- **Coronary artery patency:** Evaluate on coronary MRA or stress perfusion if clinically indicated.
+- **Supravalvular PS (neo-RVOT):** Common at PA anastomotic sites — PC velocity mapping.
+- **Aortic arch:** Screen for residual coarctation or arch hypoplasia (sagittal oblique cine + PC flow in descending aorta; collateral flow in chest wall vessels).
 
----
+#### Rastelli / REV / Nikaidoh (TGA-type + PS)
 
-## CMR Imaging Pearls
+- **RV-PA conduit:** Measure conduit gradient (PC velocity) and regurgitation. Conduit degeneration is inevitable — serial monitoring required.
+- **Subaortic tunnel patency:** Same concerns as tunnel repair above.
+- **RV dilation/dysfunction:** REV procedure avoids conduit but may cause significant RV dilation.
 
-### Morphologic Assessment
+#### Fontan Pathway (Remote VSD / Single-Ventricle Palliation)
 
-1. **Confirm both arteries from RV**:
-   - Trace aorta and PA from their origins
-   - Identify RV insertion points
-   - Confirm LV does not give rise to either vessel
+- **Fontan pathway flow:** Assess for obstruction at cavopulmonary connections (cine + PC flow). Look for fenestration patency.
+- **Systemic ventricular function:** Single RV function (SSFP volumetrics).
+- **AV valve regurgitation:** Quantify by PC flow (aortic forward flow minus ventricular stroke volume).
+- **PA size and flow distribution:** MRA for pulmonary arterial anatomy.
+- **Hepatic assessment:** Liver congestion — note hepatic vein flow patterns.
 
-2. **Identify and characterize VSD**:
-   - Location relative to great arteries (subarterial, perimembranous, remote)
-   - Size and restrictiveness
-   - Relationships to aortic and pulmonary valves
+!!! tip "Tailor the CMR Protocol to the Repair"
+    DORV encompasses virtually the entire spectrum of CHD physiology. Always review the operative report before scanning. A "DORV" patient may have TOF-like physiology, TGA-like physiology, or Fontan circulation — each requiring a different CMR protocol focus.
 
-3. **Define great artery relationship**:
-   - Anterior–posterior, side-by-side, or other
-   - Aortic position relative to pulmonary artery crucial for surgical planning
+### 3D Imaging & Advanced Techniques
 
-4. **Ventricular chamber size and function**:
-   - RV is dominant; measure volumes and ejection fraction
-   - LV is hypoplastic; assess degree of hypoplasia
-   - Measure relative chamber sizes
+- **3D SSFP / MRA:** Essential for delineating spatial relationships of great arteries, tunnel geometry, conduit course, and PA anatomy.
+- **4D flow:** Useful for comprehensive assessment of multiple flow jets (tunnel, conduit, branch PAs, neoaortic regurgitation) in a single acquisition.
+- **LGE:** Assess for myocardial fibrosis at patch sites, tunnel borders, and ventricular myocardium (prognostic for arrhythmia).
+- **3D printing:** CMR-derived models may aid preoperative planning for complex re-repairs — particularly for "routability" assessment of remote VSDs.
 
-5. **Coronary artery anatomy**:
-   - Identify origins and course of coronary arteries
-   - Exclude anomalous coronaries (e.g., left coronary from right sinus)
-   - May require dedicated coronary CMR
+## Clinical Considerations
 
-### Flow Imaging
+### Indications for Reintervention
 
-- **4D flow** or **2D PC through great arteries**:
-  - Quantify aortic and pulmonary artery flows
-  - Assess VSD shunt magnitude (left-to-right typically predominates)
-  - Measure pulmonary stenosis gradient if present
-  - Measure aortic regurgitation if suspected
+| Indication | Threshold / Trigger |
+|---|---|
+| Severe PR with RV dilation (TOF-type) | RVEDVi >150–160 mL/m², RF >40%, declining RV EF |
+| Subaortic obstruction (tunnel) | Progressive gradient, symptoms, LV dysfunction |
+| Conduit stenosis/regurgitation | Peak gradient >50 mmHg (echo) or severe regurgitation with RV dilation; consider percutaneous PV |
+| Neoaortic regurgitation (arterial switch) | Progressive AR with LV dilation |
+| Residual coarctation | Gradient >20 mmHg with collaterals or hypertension |
+| Fontan pathway obstruction | Increasing cyanosis, exercise intolerance, protein-losing enteropathy |
 
-- **PC through VSD** (if imaging plane can capture):
-  - Direction and magnitude of shunt
-  - Peak velocity indicating restrictiveness
+### Complications
 
-### LGE Assessment
+- **Subaortic obstruction** — especially after complex tunnel repairs
+- **Subpulmonary / conduit obstruction and regurgitation**
+- **AV valve regurgitation** — may worsen from intracardiac repair geometry
+- **Neoaortic regurgitation** — post–arterial switch (higher incidence than standard TGA)
+- **Coarctation / recoarctation**
+- **RV dilation and dysfunction** — conduit regurgitation, PR, or post-REV
+- **Arrhythmias** — atrial (post-Fontan, AV valve disease) and ventricular (complex tunnel, TOF-type repairs)
+- **Sudden cardiac death** — risk with prolonged QRS, severely stenosed conduits, ventricular dysfunction
+- **Heart block** — post-VSD closure (conduction system at risk near TV annulus/crux)
+- **Endocarditis** — particularly with prosthetic material, conduits, residual defects
+- **Thromboembolic events** — especially Fontan patients
 
-- Usually minimal LGE unless associated myocarditis or fibrosis
-- Assess for scar or replacement fibrosis related to complex hemodynamics
+### Pregnancy
 
----
+- **Biventricular repair:** Generally low risk if good biventricular function, normal saturations, and no significant residual hemodynamic lesions. Risk profile similar to TOF-type repair.
+- **Fontan repair:** Higher risk — comparable to other Fontan patients. Pre-conception CMR and specialist counseling mandatory.
 
-## Natural History and Clinical Presentation
+!!! info "Pre-Pregnancy CMR"
+    All DORV patients contemplating pregnancy should have CMR to quantify biventricular function, valve competence, outflow tract gradients, and aortic arch status prior to conception.
 
-### Neonates and Infants
+## Imaging Follow-up
 
-- **Cyanosis**: Degree varies based on anatomy
-- **Prostaglandin E1 (PGE1)**: Maintains ductus arteriosus to improve pulmonary blood flow if critical cyanosis
-- **Balloon atrial septostomy** (Rashkind): May improve mixing if needed
-- **Surgical intervention** required in first weeks to months
-
-### Surgical Timing and Strategy
-
-**Goals of repair**:
-- Separate systemic and pulmonary circulations
-- Restore aorta and PA to their appropriate ventricles (if possible)
-- Alleviate LVOTO and pulmonary stenosis
-
-**Common approaches**:
-
-1. **Rastelli operation**:
-   - For subarterial VSD or other configurations
-   - VSD closure redirects LV blood to aorta
-   - Conduit placed from RV to PA
-   - Conduit requires future replacements as child grows
-
-2. **Arterial switch + VSD closure**:
-   - For "Taussig-Bing" anatomy
-   - Rearrange great arteries + close VSD
-
-3. **VSD closure + pulmonary artery transfer** (less common):
-   - If anatomy permits
-
-### Long-term Outcomes
-
-- **Rastelli with conduit**: Multiple re-operations needed as child grows
-- **Up to 1 in 3 patients** may need heart transplantation eventually
-- **LV hypoplasia may limit ability** to restore normal circulation in some cases
-- **Excellent immediate outcomes** with good surgical technique, but long-term follow-up essential
-
----
-
-## Associated Findings and Syndromes
-
-### Cardiac
-
-- **Associated CHD**: Very high incidence of additional anomalies
-- **Heterotaxy spectrum**: Up to 30% have heterotaxy, asplenia, or polysplenia
-- **Coronary anomalies**: 10–15% have abnormal coronary origins
-
-### Extracardiac
-
-- **Heterotaxy syndrome**: Howell-Jolly bodies on blood smear (asplenia); increased risk of overwhelming sepsis
-- **Syndromes**: Digeorge/22q11 deletion, visceral heterotaxy associations
-- **Gastrointestinal**: Malrotation, asplenia/polysplenia, heterotaxy
-
----
-
-## Prognosis and Long-Term Management
-
-### Survival
-
-- **Without intervention**: Inviable; affected infants die in first days to weeks
-- **With surgical repair**: 
-  - Early mortality ~5–10% (depends on complexity)
-  - 10-year survival ~70–80%
-  - Late mortality mainly from RV dysfunction, conduit failure, or need for transplantation
-
-### Follow-up Essentials
-
-1. **Serial RV size and function** assessment (echocardiography/CMR)
-2. **Conduit assessment** (if Rastelli): Echocardiography for stenosis and regurgitation
-3. **Arrhythmia monitoring**: Post-operative incision sites predispose to reentrant circuits
-4. **Coronary status**: Late coronary compression or ostial anomalies
-5. **Antibiotic prophylaxis** for endocarditis (lifelong, even after successful repair)
-
----
-
-## Key Teaching Points
-
-✓ **Both great arteries from RV**: Obligate VSD provides left ventricular outlet  
-✓ **VSD anatomy determines surgical approach**: Subarterial, perimembranous, or remote affects repair strategy  
-✓ **Rastelli operation**: Common strategy; requires multiple conduit replacements  
-✓ **Heterotaxy frequent**: ~30% have asplenia/polysplenia; varicella vaccination important  
-✓ **Complex imaging**: Careful segmental analysis and coronary assessment essential pre-operatively  
-
----
-
-## References & Further Reading
-
-- Anderson RH, Becker AE, Freedom RM, et al. Sequential segmental analysis of congenital heart disease. *Pediatr Cardiol*. 1984;5(3):197–211.
-- Loffredo CA, Chokkalingam A, Sill AM, et al. Epidemiology of down and other chromosomal abnormalities. *Birth Defects Res A Clin Mol Teratol*. 2012;94(7):499–506.
-- Mercer-Rosa L, Yang W, Kutty S, et al. Hemodynamics and myocardial deformation in double outlet right ventricle. *Am J Cardiol*. 2015;115(5):598–603.
-- Mori M, Nakaoka H, Saikietal T. Rare stenotic phenotype of double outlet right ventricle. *Congenit Heart Dis*. 2014;9(2):142–151.
-- Van Praagh R, David I. What is double outlet right ventricle? *Circulation*. 1982;66(Suppl I):I-17.
+- **Simple biventricular repairs** (VSD-type, uncomplicated TOF-type): CMR every **2–3 years** if stable; annual if borderline measurements.
+- **Complex tunnel repairs:** CMR every **1–2 years** — high risk of progressive subaortic obstruction.
+- **Conduit-bearing repairs** (Rastelli, REV, Nikaidoh): CMR every **1–2 years** to track conduit function; conduit replacement is inevitable.
+- **Post–arterial switch:** CMR every **2–3 years**; more frequent if progressive neoaortic regurgitation or coronary concerns.
+- **Fontan patients:** CMR every **1–2 years** with attention to ventricular function, pathway flows, AV valve, and hepatic assessment.
+- **Escalate imaging** for new symptoms, declining exercise capacity, new arrhythmias, or approaching intervention thresholds.

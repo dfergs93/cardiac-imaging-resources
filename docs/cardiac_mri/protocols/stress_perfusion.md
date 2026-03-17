@@ -27,8 +27,8 @@ title: Stress Perfusion Protocol
 |---|----------|------|-------|
 | 1 | Localizers | 3-plane | |
 | 2 | Dark blood HASTE | Axial | Morphology |
-| 3 | Cine SSFP | 4CH, 2CH, 3CH, RVOT, SAX | Baseline function / wall motion |
-| 4 | **Rest Perfusion** | 3 SAX (base/mid/apex) + 4CH | 0.075–0.1 mmol/kg Gd bolus at ~2 mL/s |
+| 3 | Cine SSFP | 4CH, 2CH, 3CH, SAX | Baseline function / wall motion |
+| 4 | **Rest Perfusion** | 3 SAX (base/mid/apex) | |
 | 5 | Rest cines (repeat if wall motion question) | SAX | *Optional* |
 | 6 | — | ***Begin stress agent infusion*** | Allow 2–4 min before stress imaging |
 | 7 | **Stress Perfusion** | Same 3 SAX slices | At peak stress; same contrast dose |
@@ -69,22 +69,3 @@ title: Stress Perfusion Protocol
 | No stress defect + No LGE | Normal — no significant ischemia or scar |
 
 ---
-
-## Reporting Template
-
-```
-TECHNIQUE: CMR stress perfusion with [vasodilator]. 
-Gadolinium [dose/agent] administered for rest and stress perfusion.
-
-STRESS PERFUSION:
-[Normal uniform perfusion / perfusion defect in X territory, subendocardial/transmural, at stress only/rest and stress]
-
-REST PERFUSION: [Normal / defect — fixed]
-
-LGE: [None / transmural scar in X segment(s), X% extent]
-
-WALL MOTION (stress): [Normal / new RWMA in X territory at stress]
-
-IMPRESSION:
-[Normal study / Evidence of ischemia in X territory / Fixed scar / Mixed ischemia and scar]
-```

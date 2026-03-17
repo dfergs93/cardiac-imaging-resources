@@ -26,9 +26,9 @@ const templateData = {
         ventricles: "D-loop with levocardia. Right ventricular hypertrophy present. Perimembranous ventricular septal defect measuring [X] mm.",
         va: "Overriding aorta with approximately [25-50]% override of the ventricular septal defect. Right ventricular outflow tract obstruction with infundibular stenosis. Hypoplastic main pulmonary artery measuring [X] mm.",
         coronary: "Right and left coronary arteries originate from their expected sinuses of Valsalva. [Note: Evaluate for anomalous coronary anatomy, particularly LAD from RCA].",
-        aorta: "Left-sided aortic arch with normal branching pattern. [Assess for aortic root dilation].",
-        pa: "Hypoplastic main pulmonary artery and branch pulmonary arteries. [Assess for presence of major aortopulmonary collateral arteries (MAPCAs)].",
-        misc: "Classic tetralogy of Fallot with [specify degree of] RVOTO, overriding aorta, VSD, and RVH."
+        aorta: "Left-sided aortic arch with normal branching pattern. [Assess for aortic root dilation]. [Assess for presence of major aortopulmonary collateral arteries (MAPCAs)].",
+        pa: "Hypoplastic main pulmonary artery and branch pulmonary arteries. [Assess for regurgitation post repair].",
+        misc: "None."
     },
     tga: {
         situs: "Situs solitus.",

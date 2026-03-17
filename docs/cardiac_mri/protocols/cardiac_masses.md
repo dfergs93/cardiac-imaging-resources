@@ -8,23 +8,43 @@ title: Cardiac Masses Protocol
 
 ---
 
-## Sequence Order
+## Sequence Options
+
+**General Considerations**  
+- **Size**: Masses < 1 cm are difficult to see.  
+- **Location**: Document where the mass is located.  
+- **Imaging Planes**: Include Standard Views AND Oblique Views to better visualize the mass.  
 
 | # | Sequence | View | Notes |
 |---|----------|------|-------|
-| 1 | Localizers | 3-plane | |
-| 2 | **Dark blood HASTE** | Axial stack | Mass location, morphology, extracardiac extent |
-| 3 | **Cine SSFP** | 4CH, 2CH, 3CH, SAX, targeted views | Mass mobility, attachment, valve obstruction, chamber function |
-| 4 | **T2 mapping** | Targeted to mass | Edema / cystic content |
-| 5 | **T2 STIR** | Targeted views | High signal in hemangioma, cyst, malignant masses |
-| 6 | **T1 w/o fat sat** | Targeted views | Detect T1 bright signal (fat, thrombus, hemorrhage) |
-| 7 | **T1 + fat sat** | Same views | Fat suppression confirms lipomatous lesion |
-| 8 | **Multi-echo T2\*** | Targeted | Iron content (rare); cystic vs. solid |
+| 1 | **Localizers** | 3-plane | |
+| 2 | **Cine SSFP** (or **GRE** backup) | Standard + Oblique | Mass mobility, attachment, function |
+| 3 | **T1 DIRFSE** | 2 planes | *Required: At least one in two planes* |
+| 4 | **T1 DIRFSE FS** | 2 planes | *Required: At least one in two planes* |
+| 5 | **T2 DIRFSE FS** | 2 planes | *Required: At least one in two planes* |
+| 6 | **T1 TIRFSE** | Targeted | *Optional* |
+| 7 | **Tagging** | Targeted | *Optional* |
+| 8 | **Parametric mapping** | Targeted | *Optional* |
+| — | — | — | ***Inject gadolinium*** |
+| 9 | **First pass perfusion** | Targeted | Especially if thrombus/hemangioma suspected |
+| 10 | **T1 pre/post LAVA/T1G** | Targeted | |
+| 11 | **T1 DIRFSE FS (Post)** | Targeted | |
+| 12 | **EGE** | Targeted | Early Gadolinium Enhancement |
+| 13 | **LGE** | Targeted | Late Gadolinium Enhancement |
+
+### Example Protocol
+
+| # | Sequence | View | Notes |
+|---|----------|------|-------|
+| 1 | **Localizers** | 3-plane | |
+| 2 | **Cine SSFP** | 4CH, 2CH, 3CH, SAX, targeted views | Mass mobility, attachment, valve obstruction, chamber function |
+| 3 | **T2 STIR** | Targeted views | High signal in hemangioma, cyst, malignant masses |
+| 4 | **T1 w/o fat sat** | Targeted views | Detect T1 bright signal (fat, thrombus, hemorrhage) |
+| 5 | **T1 + fat sat** | Same views | Fat suppression confirms lipomatous lesion |
 | — | — | ***Inject gadolinium (0.1 mmol/kg)*** | |
-| 9 | **Dynamic perfusion** | Targeted | Enhancement kinetics — perfused vs. avascular |
-| 10 | **Early post-Gd T1** | Targeted | Immediate enhancement |
-| 11 | **TI Scout** | — | |
-| 12 | **LGE** | SAX stack + targeted mass views | Delayed enhancement pattern |
+| 6 | **Dynamic perfusion** | Targeted | Enhancement kinetics — perfused vs. avascular |
+| 7 | **TI Scout** | — | |
+| 8 | **LGE** | SAX stack + targeted mass views | Delayed enhancement pattern |
 
 ---
 
@@ -71,28 +91,3 @@ title: Cardiac Masses Protocol
 | **Lymphoma** | Pericardium, myocardium | Diffuse infiltration; preserves anatomy |
 | **Metastasis** | Any chamber / pericardium | History of primary malignancy; lung, breast, melanoma most common |
 | **Mesothelioma** | Pericardium | Diffuse pericardial involvement |
-
----
-
-## Reporting Template
-
-```
-TECHNIQUE: CMR with gadolinium for cardiac mass evaluation. 
-Multi-echo T1/T2/STIR sequences, dynamic perfusion, and LGE performed.
-
-MASS:
-Location: [chamber / valve / pericardium]; attachment site: [describe]
-Size: XX × XX × XX mm
-Mobility: [mobile / sessile / broad-based]
-
-SIGNAL CHARACTERISTICS:
-T1: [iso/hypo/hyperintense] [fat saturation: unchanged/suppressed]
-T2 / STIR: [iso/hypo/hyperintense]
-Perfusion: [enhances / does not enhance — avascular]
-LGE: [delayed enhancement / none]
-
-IMPRESSION:
-[Most likely diagnosis] based on [location, characteristics, enhancement pattern].
-[Differential considerations if applicable]
-[Recommend echo correlation / TEE / surgical evaluation]
-```

@@ -13,19 +13,19 @@ Overview of commonly used cardiac MRI sequences, their key purposes, and acquisi
 | Sequence | Type | Primary Purpose | Key Parameters |
 |----------|------|-----------------|----------------|
 | **Cine SSFP** | bSSFP (bright blood) | Ventricular function, morphology, valve motion | 25–35 phases, 6–8 mm slice, breath-hold, retrospective ECG gating |
+| **Cine Free Breathing** | bSSFP (bright blood) | Pericardial constriction, abnormal septal motion | |
 | **LGE** | IR-GRE | Myocardial scar, fibrosis, infiltration | TI scout first (null normal myocardium); ~10–15 min post-Gd |
 | **T1 MOLLI** | LL (Look-Locker) | T1 mapping → ECV calculation | Native + post-contrast; 5(3)3 or 5(3b)3 scheme |
-| **T1 ShMOLLI** | Modified LL | T1 mapping (shorter BH) | Less accurate at long T1 |
-| **T1 SASHA** | Saturation-recovery | T1 mapping — heart rate independent | Longer BH; reference at 3T |
 | **T2 Mapping** | T2-prepared bSSFP | Edema (myocarditis, acute MI) | Normal ~45–55 ms at 1.5T |
 | **T2 STIR / T2 BB** | BB-TSE | Edema, masses, pericarditis | |
-| **T2\*** | Multi-echo GRE | Iron overload quantification | Normal T2* >20 ms; severe <10 ms |
-| **4D Flow** | PC-VIPR or Cartesian | Flow in all vessels; WSS; shunt quantification | Long acquisition (10–20 min), retrospective |
+| **T2\*** | Multi-echo GRE | Iron overload quantification | Normal T2* (1.5T) >20 ms; severe <10 ms |
+| **4D Flow** | PC-VIPR or Cartesian | Flow in all vessels; shunt quantification | Long acquisition (10–20 min), retrospective |
 | **2D Phase Contrast** | Velocity-encoded GRE | Flow quantification at specific vessels | Set VENC 10–20% above expected peak velocity |
 | **Perfusion (first-pass)** | T1w SSFP or GRE | Ischemia detection; rest+stress | 0.075–0.1 mmol/kg Gd; 3 SAX slices + long axis |
 | **Black Blood (HASTE)** | SE EPI | Morphology, vessel anatomy, masses | Single-shot; good for rapid survey |
 | **Dark Blood TSE** | IR-TSE | Vessel wall, pericardium, masses | Better SNR than HASTE; longer |
-| **Tagging (DENSE/SENC)** | Grid or spectral | Myocardial strain | Circumferential strain normal ~ −20 to −25% |
+| **Tagging** | Grid or spectral | Myocardial strain | Circumferential strain normal ~ −20 to −25% |
+| **CE MRA** | T1w GRE | Aortic dissection, pulmonary veins, coronary arteries | |
 
 ---
 
@@ -94,5 +94,3 @@ Overview of commonly used cardiac MRI sequences, their key purposes, and acquisi
 | 2-chamber (2CH) | Perpendicular to 4CH through LV | LA, LV, mitral valve |
 | 3-chamber (3CH) | LVOT view | LV, LVOT, aortic valve; rules out LVOTO |
 | Short axis (SAX) | Perpendicular to LV long axis | Stack base to apex for volumetry |
-| RVOT | Free-hand, right-heart focus | PA, pulmonic valve, RVOT |
-| Coronal / Oblique sag | Free-hand | Aorta, PA, aortic arch, great vessels |

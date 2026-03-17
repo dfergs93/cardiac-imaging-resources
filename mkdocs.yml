@@ -33,8 +33,7 @@ nav:
     - Overview & Sequences: cardiac_mri/index.md
     - Protocols:
       - All Protocols: cardiac_mri/protocols/index.md
-      - Cardiac Function: cardiac_mri/protocols/cardiac_function.md
-      - Viability: cardiac_mri/protocols/viability.md
+      - Cardiomyopathy: cardiac_mri/protocols/cardiomyopathy.md
       - Stress Perfusion: cardiac_mri/protocols/stress_perfusion.md
       - Congenital / 4D Flow: cardiac_mri/protocols/congenital_4dflow.md
       - Cardiac Masses: cardiac_mri/protocols/cardiac_masses.md
