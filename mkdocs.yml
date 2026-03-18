@@ -39,7 +39,11 @@ nav:
       - Cardiac Masses: cardiac_mri/protocols/cardiac_masses.md
   - Valves:
     - Grading Reference: valves/index.md
-    - Device Planning: valves/tavr_tmvr.md
+    - Device Planning CT:
+      - TAVR: valves/tavr.md
+      - TMVR: valves/tmvr.md
+      - TTVR: valves/ttvr.md
+      - LAAO: valves/laao.md
   - Congenital HD:
     - Overview & Segmental Analysis: congenital/index.md
     - Tetralogy of Fallot: congenital/tof.md
