@@ -28,7 +28,13 @@ theme:
 
 nav:
   - Home: index.md
-  - Cardiac CT: cardiac_ct/index.md
+  - Cardiac CT:
+    - Protocols & Troubleshooting: cardiac_ct/index.md
+    - Device Planning CT:
+      - TAVR: cardiac_ct/device_planning/tavr.md
+      - TMVR: cardiac_ct/device_planning/tmvr.md
+      - TTVR: cardiac_ct/device_planning/ttvr.md
+      - LAAO: cardiac_ct/device_planning/laao.md
   - Cardiac MRI:
     - Overview & Sequences: cardiac_mri/index.md
     - Protocols:
@@ -39,11 +45,6 @@ nav:
       - Cardiac Masses: cardiac_mri/protocols/cardiac_masses.md
   - Valves:
     - Grading Reference: valves/index.md
-    - Device Planning CT:
-      - TAVR: valves/tavr.md
-      - TMVR: valves/tmvr.md
-      - TTVR: valves/ttvr.md
-      - LAAO: valves/laao.md
   - Congenital HD:
     - Overview & Segmental Analysis: congenital/index.md
     - Tetralogy of Fallot: congenital/tof.md
