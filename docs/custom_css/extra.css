@@ -693,7 +693,7 @@ select:focus,
 
 .flow-result-line {
     display: grid;
-    grid-template-columns: 140px 1fr auto;
+    grid-template-columns: 185px 1fr;
     gap: var(--spacing-md);
     align-items: center;
     padding: 0.6rem 0.75rem;
@@ -716,7 +716,7 @@ select:focus,
     font-weight: 500;
     color: var(--md-default-fg-color--light);
     font-size: 0.85rem;
-    white-space: nowrap;
+    word-break: break-word;
 }
 
 .flow-result-value {
@@ -729,10 +729,26 @@ select:focus,
     text-overflow: ellipsis;
 }
 
-.flow-result-badge {
-    display: flex;
-    justify-content: flex-end;
-    white-space: nowrap;
+/* Row severity backgrounds */
+.flow-result-line.mild {
+    background: rgba(76, 175, 80, 0.07);
+    border-color: rgba(76, 175, 80, 0.4);
+}
+.flow-result-line.moderate {
+    background: rgba(255, 152, 0, 0.09);
+    border-color: rgba(255, 152, 0, 0.5);
+}
+.flow-result-line.severe {
+    background: rgba(198, 40, 40, 0.09);
+    border-color: rgba(198, 40, 40, 0.5);
+}
+.flow-result-line.balanced {
+    background: rgba(76, 175, 80, 0.04);
+    border-color: rgba(76, 175, 80, 0.25);
+}
+.flow-result-line.shunt-rl {
+    background: rgba(33, 150, 243, 0.09);
+    border-color: rgba(33, 150, 243, 0.45);
 }
 
 .flow-sep {
@@ -764,9 +780,19 @@ select:focus,
     gap: 0.4rem;
 }
 
-.regurg-result-item.highlight {
-    border-color: #ed8936;
-    box-shadow: 0 0 0 2px rgba(237, 137, 54, 0.15);
+.regurg-result-item.mild {
+    background: rgba(76, 175, 80, 0.07);
+    border-color: rgba(76, 175, 80, 0.35);
+}
+
+.regurg-result-item.moderate {
+    background: rgba(255, 152, 0, 0.09);
+    border-color: rgba(255, 152, 0, 0.5);
+}
+
+.regurg-result-item.severe {
+    background: rgba(198, 40, 40, 0.09);
+    border-color: rgba(198, 40, 40, 0.5);
 }
 
 .regurg-result-item.empty {
@@ -792,15 +818,30 @@ select:focus,
     line-height: 1.5;
 }
 
-.regurg-result-badge {
-    margin-top: auto;
-}
+
 
 .regurg-method {
     font-size: 0.72rem;
     color: var(--md-default-fg-color--light);
     font-style: italic;
     margin-top: 0.1rem;
+}
+
+.flow-section-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--md-primary-fg-color);
+    padding: 0.5rem 0 0.15rem;
+    margin-top: 0.25rem;
+    border-top: 1px solid var(--md-default-fg-color--lightest);
+    grid-column: 1 / -1;
+}
+.flow-section-label:first-child {
+    border-top: none;
+    margin-top: 0;
+    padding-top: 0;
 }
 
 /* ============================================================
@@ -901,14 +942,43 @@ select:focus,
     border-color: #4a5568;
 }
 
+[data-md-color-scheme="slate"] .flow-result-line.mild {
+    background: rgba(76, 175, 80, 0.12);
+    border-color: rgba(76, 175, 80, 0.45);
+}
+[data-md-color-scheme="slate"] .flow-result-line.moderate {
+    background: rgba(255, 152, 0, 0.14);
+    border-color: rgba(255, 152, 0, 0.55);
+}
+[data-md-color-scheme="slate"] .flow-result-line.severe {
+    background: rgba(244, 67, 54, 0.14);
+    border-color: rgba(244, 67, 54, 0.55);
+}
+[data-md-color-scheme="slate"] .flow-result-line.balanced {
+    background: rgba(76, 175, 80, 0.07);
+    border-color: rgba(76, 175, 80, 0.3);
+}
+[data-md-color-scheme="slate"] .flow-result-line.shunt-rl {
+    background: rgba(33, 150, 243, 0.14);
+    border-color: rgba(33, 150, 243, 0.5);
+}
+
 [data-md-color-scheme="slate"] .regurg-result-item {
     background: #1a202c;
     border-color: #2d3748;
 }
 
-[data-md-color-scheme="slate"] .regurg-result-item.highlight {
-    background: #2d3748;
-    border-color: #ed8936;
+[data-md-color-scheme="slate"] .regurg-result-item.mild {
+    background: rgba(76, 175, 80, 0.12);
+    border-color: rgba(76, 175, 80, 0.4);
+}
+[data-md-color-scheme="slate"] .regurg-result-item.moderate {
+    background: rgba(255, 152, 0, 0.14);
+    border-color: rgba(255, 152, 0, 0.5);
+}
+[data-md-color-scheme="slate"] .regurg-result-item.severe {
+    background: rgba(244, 67, 54, 0.14);
+    border-color: rgba(244, 67, 54, 0.5);
 }
 
 [data-md-color-scheme="slate"] input[type="number"],
@@ -937,6 +1007,11 @@ select:focus,
 
 [data-md-color-scheme="slate"] .regurg-method {
     color: #718096;
+}
+
+[data-md-color-scheme="slate"] .flow-section-label {
+    color: #63b3ed;
+    border-top-color: #2d3748;
 }
 
 /* ============================================================
@@ -1110,9 +1185,7 @@ select:focus,
         gap: var(--spacing-sm);
     }
     
-    .flow-result-badge {
-        justify-content: flex-start;
-    }
+
     
     .input-row,
     .calc-input-stack .input-row {

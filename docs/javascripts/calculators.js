@@ -59,13 +59,13 @@ function rfBadge(rf) {
     return `<span class="calc-badge severe">RF ${rf.toFixed(1)}% — Severe</span>`;
 }
 
-function qpqsBadge(ratio) {
-    if (ratio > 2.0) return `<span class="calc-badge severe">Large L→R shunt</span>`;
-    if (ratio > 1.5) return `<span class="calc-badge moderate">Moderate L→R shunt</span>`;
-    if (ratio > 1.1) return `<span class="calc-badge mild">Small L→R shunt</span>`;
-    if (ratio >= 0.9) return `<span class="calc-badge balanced">No significant shunt</span>`;
-    if (ratio >= 0.7) return `<span class="calc-badge shunt-rl">Small R→L shunt</span>`;
-    return `<span class="calc-badge severe">Large R→L shunt</span>`;
+function qpqsClass(ratio) {
+    if (ratio > 2.0) return 'severe';
+    if (ratio > 1.5) return 'moderate';
+    if (ratio > 1.1) return 'mild';
+    if (ratio >= 0.9) return 'balanced';
+    if (ratio >= 0.7) return 'shunt-rl';
+    return 'severe';
 }
 
 function regurgToLmin(val, units, hr) {
@@ -396,7 +396,6 @@ function calcStandardFlow() {
         html += `<div class="flow-result-line">
             <span class="flow-result-label">Ao Flow</span>
             <span class="flow-result-value">${qs.toFixed(2)} L/min${qsIndexed ? `, ${qsIndexed} L/min/m²` : ''}</span>
-            <span class="flow-result-badge"></span>
         </div>`;
         reportLines.push(`Ao Flow: ${qs.toFixed(2)} L/min${qsIndexed ? `, ${qsIndexed} L/min/m²` : ''}`);
     }
@@ -408,7 +407,6 @@ function calcStandardFlow() {
         html += `<div class="flow-result-line">
             <span class="flow-result-label">PA Flow (${qpSource})</span>
             <span class="flow-result-value">${qp.toFixed(2)} L/min${qpIndexed ? `, ${qpIndexed} L/min/m²` : ''}</span>
-            <span class="flow-result-badge"></span>
         </div>`;
         reportLines.push(`PA Flow: ${qp.toFixed(2)} L/min${qpIndexed ? `, ${qpIndexed} L/min/m²` : ''}`);
     }
@@ -420,10 +418,9 @@ function calcStandardFlow() {
             const lPct = (lpaNet.mid / total * 100).toFixed(0);
             const rPct = (rpaNet.mid / total * 100).toFixed(0);
             const asymmetric = Math.abs(lpaNet.mid / total - 0.55) > 0.10;
-            html += `<div class="flow-result-line ${asymmetric ? 'highlight' : ''}">
+            html += `<div class="flow-result-line ${asymmetric ? 'highlight moderate' : ''}">
                 <span class="flow-result-label">RPA/LPA Split</span>
                 <span class="flow-result-value">${rPct}% / ${lPct}%</span>
-                <span class="flow-result-badge">${asymmetric ? '<span class="calc-badge moderate">Asymmetric</span>' : ''}</span>
             </div>`;
             reportLines.push(`RPA/LPA Split: ${rPct}%/${lPct}%${asymmetric ? ' (asymmetric)' : ''}`);
         }
@@ -437,10 +434,9 @@ function calcStandardFlow() {
         else if (ratio < 0.9) shuntType = 'R→L shunt';
         else shuntType = 'No shunt';
 
-        html += `<div class="flow-result-line highlight">
+        html += `<div class="flow-result-line highlight ${qpqsClass(ratio)}">
             <span class="flow-result-label">Qp:Qs</span>
             <span class="flow-result-value">${ratio.toFixed(2)}</span>
-            <span class="flow-result-badge">${qpqsBadge(ratio)}</span>
         </div>`;
         reportLines.push(`Qp:Qs: ${ratio.toFixed(2)} (${shuntType})`);
     }
@@ -545,8 +541,7 @@ function calcStandardFlow() {
             const item = regurgItems.find(r => r.label === regurgName);
 
             if (item) {
-                const badgeLabel = item.cls.charAt(0).toUpperCase() + item.cls.slice(1);
-                html += `<div class="regurg-result-item ${item.highlight}">
+                html += `<div class="regurg-result-item ${item.cls}">
                     <span class="regurg-result-label">${item.label}</span>
                     <div>
                         <span class="regurg-result-value">${item.value}</span>
@@ -555,9 +550,6 @@ function calcStandardFlow() {
                         }
                         <span class="regurg-method">${item.method}</span>
                     </div>
-                    <span class="regurg-result-badge">
-                        <span class="calc-badge ${item.cls}">${badgeLabel}</span>
-                    </span>
                 </div>`;
                 regurgLines.push(item.reportText);
             } else {
@@ -688,13 +680,56 @@ function calcFontanFlow() {
     const totalFontanFlow = [glennNet.mid, fontanNet.mid].filter(v => !isNaN(v)).reduce((a, b) => a + b, 0) || NaN;
     const qp = (!isNaN(lpaNet.mid) && !isNaN(rpaNet.mid)) ? lpaNet.mid + rpaNet.mid : (!isNaN(paNet.mid) ? paNet.mid : NaN);
     const qs = !isNaN(aoNet.mid) ? aoNet.mid : NaN;
+    // Pulmonary venous flow (Qpv) — for collateral quantification and shunt ratios
+    const qpv = (!isNaN(lpvNet.mid) && !isNaN(rpvNet.mid)) ? lpvNet.mid + rpvNet.mid : NaN;
 
-    // Build report text
-    let reportLines = [];
-    reportLines.push('4D Flow Analysis (Fontan):');
-    reportLines.push('');
+    // Pre-compute collateral values (needed for both HTML and copied report)
+    // pa = pulmonary arterial, pv = pulmonary venous, sa = systemic arterial, sv = systemic venous
+    const qRatioRows = [
+        { label: 'Qpa:Qsa', num: qp,  den: qs,              primary: true  },
+        { label: 'Qpv:Qsa', num: qpv, den: qs,              primary: false },
+        { label: 'Qpa:Qsv', num: qp,  den: totalFontanFlow, primary: false },
+        { label: 'Qpv:Qsv', num: qpv, den: totalFontanFlow, primary: false },
+    ];
 
-    // HTML output
+    let pulCollateral = NaN;
+    let pulCollPctOfAo = null;
+    let pulCollSevere = false;
+    if (!isNaN(qpv) && !isNaN(qp)) {
+        pulCollateral = qpv - qp;
+        pulCollPctOfAo = !isNaN(qs) && qs > 0 ? (pulCollateral / qs * 100).toFixed(0) : null;
+        pulCollSevere = !isNaN(qs) && qs > 0 ? pulCollateral > qs * 0.2 : pulCollateral > qp * 0.2;
+    }
+
+    let systCollateral = NaN;
+    let systCollPct = null;
+    let systCollSignificant = false;
+    if (!isNaN(aoForward) && !isNaN(totalFontanFlow)) {
+        const raw = aoForward - totalFontanFlow;
+        if (raw > 0) {
+            systCollateral = raw;
+            systCollPct = !isNaN(qs) && qs > 0 ? (systCollateral / qs * 100).toFixed(0) : null;
+            systCollSignificant = systCollateral > aoForward * 0.15;
+        }
+    }
+
+    let avgCollateral = NaN;
+    let avgCollCls = '';
+    let avgCollNote = '';
+    if (!isNaN(pulCollateral) && !isNaN(systCollateral) && systCollateral > 0) {
+        avgCollateral = (Math.abs(pulCollateral) + systCollateral) / 2;
+        const avgI = !isNaN(bsa) && bsa > 0 ? avgCollateral / bsa : NaN;
+        if (!isNaN(avgI)) {
+            if (avgI < 0.5)       { avgCollCls = 'normal';   avgCollNote = 'Minimal'; }
+            else if (avgI < 1.0)  { avgCollCls = 'mild';     avgCollNote = 'Mild'; }
+            else if (avgI < 1.5)  { avgCollCls = 'moderate'; avgCollNote = 'Moderate'; }
+            else                  { avgCollCls = 'severe';   avgCollNote = 'Severe'; }
+        } else if (avgCollateral > 1.0) {
+            avgCollCls = 'moderate'; avgCollNote = 'Significant';
+        }
+    }
+
+    // HTML output — sections mirror the copied report layout
     let html = '<div class="flow-results-wrapper">';
     html += '<div class="flow-results-header">';
     html += '<h3>Fontan Results</h3>';
@@ -702,223 +737,163 @@ function calcFontanFlow() {
     html += '</div>';
     html += '<div class="flow-results-grid">';
 
-    // Aortic Flow
+    // ── SYSTEMIC ──────────────────────────────────────────────
+    html += '<div class="flow-section-label">Systemic</div>';
     if (!isNaN(qs)) {
-        const qsIndexed = !isNaN(bsa) && bsa > 0 ? (qs / bsa).toFixed(2) : null;
-        const ciCls = qsIndexed && parseFloat(qsIndexed) < 2.2 ? 'abnormal' : qsIndexed && parseFloat(qsIndexed) > 4.0 ? 'moderate' : 'normal';
+        const qsI = !isNaN(bsa) && bsa > 0 ? `, ${(qs / bsa).toFixed(2)} L/min/m²` : '';
         html += `<div class="flow-result-line">
-            <span class="flow-result-label">Ao Flow</span>
-            <span class="flow-result-value">${qs.toFixed(2)} L/min${qsIndexed ? `, ${qsIndexed} L/min/m²` : ''}</span>
-        </div>`;
-        reportLines.push(`Ao Flow: ${qs.toFixed(2)} L/min${qsIndexed ? `, ${qsIndexed} L/min/m²` : ''}`);
-    }
-
-    // PA Flow
-    if (!isNaN(qp)) {
-        const qpIndexed = !isNaN(bsa) && bsa > 0 ? (qp / bsa).toFixed(2) : null;
-        html += `<div class="flow-result-line">
-            <span class="flow-result-label">PA Flow</span>
-            <span class="flow-result-value">${qp.toFixed(2)} L/min${qpIndexed ? `, ${qpIndexed} L/min/m²` : ''}</span>
-            <span class="flow-result-badge"></span>
-        </div>`;
-        reportLines.push(`PA Flow: ${qp.toFixed(2)} L/min${qpIndexed ? `, ${qpIndexed} L/min/m²` : ''}`);
-    }
-
-    // Qp:Qs
-    if (!isNaN(qp) && !isNaN(qs) && qs > 0) {
-        const ratio = qp / qs;
-        let shuntType = '';
-        if (ratio > 1.1) shuntType = 'L→R shunt';
-        else if (ratio < 0.9) shuntType = 'R→L shunt';
-        else shuntType = 'No shunt';
-
-        html += `<div class="flow-result-line highlight">
-            <span class="flow-result-label">Qp:Qs</span>
-            <span class="flow-result-value">${ratio.toFixed(2)}</span>
-            <span class="flow-result-badge">${qpqsBadge(ratio)}</span>
-        </div>`;
-        reportLines.push(`Qp:Qs: ${ratio.toFixed(2)} (${shuntType})`);
-    }
-
-    // RPA/LPA Split
-    if (!isNaN(lpaNet.mid) && !isNaN(rpaNet.mid) && qp > 0) {
-        const lPct = (lpaNet.mid / qp * 100).toFixed(0);
-        const rPct = (rpaNet.mid / qp * 100).toFixed(0);
-        const asymmetric = Math.abs(lpaNet.mid / qp - 0.5) > 0.15;
-        html += `<div class="flow-result-line">
-            <span class="flow-result-label">RPA Flow</span>
-            <span class="flow-result-value">${rpaNet.mid.toFixed(2)} L/min</span>
-            <span class="flow-result-badge"></span>
-        </div>`;
-        html += `<div class="flow-result-line">
-            <span class="flow-result-label">LPA Flow</span>
-            <span class="flow-result-value">${lpaNet.mid.toFixed(2)} L/min</span>
-            <span class="flow-result-badge"></span>
-        </div>`;
-        html += `<div class="flow-result-line ${asymmetric ? 'highlight' : ''}">
-            <span class="flow-result-label">RPA/LPA Split</span>
-            <span class="flow-result-value">${rPct}% / ${lPct}%</span>
-            <span class="flow-result-badge">${asymmetric ? '<span class="calc-badge moderate">Asymmetric</span>' : ''}</span>
-        </div>`;
-        reportLines.push('');
-        reportLines.push(`RPA Flow: ${rpaNet.mid.toFixed(2)} L/min`);
-        reportLines.push(`LPA Flow: ${lpaNet.mid.toFixed(2)} L/min`);
-        reportLines.push(`RPA/LPA Split: ${rPct}%/${lPct}%${asymmetric ? ' (asymmetric)' : ''}`);
-    }
-
-    // Pulmonary Veins
-    if (!isNaN(lpvNet.mid) && !isNaN(rpvNet.mid)) {
-        const totalPvFlow = lpvNet.mid + rpvNet.mid;
-        const lPvPct = (lpvNet.mid / totalPvFlow * 100).toFixed(0);
-        const rPvPct = (rpvNet.mid / totalPvFlow * 100).toFixed(0);
-        html += `<div class="flow-result-line">
-            <span class="flow-result-label">RPV Flow</span>
-            <span class="flow-result-value">${rpvNet.mid.toFixed(2)} L/min</span>
-            <span class="flow-result-badge"></span>
-        </div>`;
-        html += `<div class="flow-result-line">
-            <span class="flow-result-label">LPV Flow</span>
-            <span class="flow-result-value">${lpvNet.mid.toFixed(2)} L/min</span>
-            <span class="flow-result-badge"></span>
-        </div>`;
-        html += `<div class="flow-result-line">
-            <span class="flow-result-label">RPV/LPV Split</span>
-            <span class="flow-result-value">${rPvPct}% / ${lPvPct}%</span>
-            <span class="flow-result-badge"></span>
-        </div>`;
-        reportLines.push('');
-        reportLines.push(`RPV Flow: ${rpvNet.mid.toFixed(2)} L/min`);
-        reportLines.push(`LPV Flow: ${lpvNet.mid.toFixed(2)} L/min`);
-        reportLines.push(`RPV/LPV Split: ${rPvPct}%/${lPvPct}%`);
-    }
-
-    // Glenn Flow
-    if (glennOk) {
-        const glennIndexed = !isNaN(bsa) && bsa > 0 ? (glennNet.mid / bsa).toFixed(2) : null;
-        html += `<div class="flow-result-line">
-            <span class="flow-result-label">Glenn Flow</span>
-            <span class="flow-result-value">${glennNet.mid.toFixed(2)} L/min${glennIndexed ? `, ${glennIndexed} L/min/m²` : ''}</span>
-            <span class="flow-result-badge"></span>
-        </div>`;
-        reportLines.push('');
-        reportLines.push(`Glenn Flow: ${glennNet.mid.toFixed(2)} L/min${glennIndexed ? `, ${glennIndexed} L/min/m²` : ''}`);
-    }
-
-    // Fontan Flow
-    if (fontanOk) {
-        const fontanIndexed = !isNaN(bsa) && bsa > 0 ? (fontanNet.mid / bsa).toFixed(2) : null;
-        html += `<div class="flow-result-line">
-            <span class="flow-result-label">Fontan Flow</span>
-            <span class="flow-result-value">${fontanNet.mid.toFixed(2)} L/min${fontanIndexed ? `, ${fontanIndexed} L/min/m²` : ''}</span>
-            <span class="flow-result-badge"></span>
-        </div>`;
-        reportLines.push(`Fontan Flow: ${fontanNet.mid.toFixed(2)} L/min${fontanIndexed ? `, ${fontanIndexed} L/min/m²` : ''}`);
-    }
-
-    // Total Caval Flow
-    if (!isNaN(totalFontanFlow)) {
-        const totalIndexed = !isNaN(bsa) && bsa > 0 ? (totalFontanFlow / bsa).toFixed(2) : null;
-        html += `<div class="flow-result-line highlight">
-            <span class="flow-result-label">Total Caval Flow</span>
-            <span class="flow-result-value">${totalFontanFlow.toFixed(2)} L/min${totalIndexed ? `, ${totalIndexed} L/min/m²` : ''}</span>
-            <span class="flow-result-badge"></span>
-        </div>`;
-        reportLines.push(`Total Caval Flow: ${totalFontanFlow.toFixed(2)} L/min${totalIndexed ? `, ${totalIndexed} L/min/m²` : ''}`);
-    }
-
-    // Fontan Inflow Distribution
-    if (glennOk && fontanOk) {
-        const totalIn = glennNet.mid + fontanNet.mid;
-        const glennPct = (glennNet.mid / totalIn * 100).toFixed(0);
-        const fontanPct = (fontanNet.mid / totalIn * 100).toFixed(0);
-        html += `<div class="flow-result-line">
-            <span class="flow-result-label">Inflow Distribution</span>
-            <span class="flow-result-value">Glenn ${glennPct}% / Fontan ${fontanPct}%</span>
-            <span class="flow-result-badge"></span>
+            <span class="flow-result-label">Systemic Output (Qs)</span>
+            <span class="flow-result-value">${qs.toFixed(2)} L/min${qsI}</span>
         </div>`;
     }
 
-    // Fontan-to-Pulmonary match
-    if (!isNaN(totalFontanFlow) && !isNaN(qp) && qp > 0) {
-        const match = totalFontanFlow / qp;
-        let matchCls = 'abnormal';
-        let matchNote = '';
-        if (match > 0.95) { matchCls = 'normal'; matchNote = 'Good match'; }
-        else if (match > 0.85) { matchCls = 'mild'; matchNote = 'Acceptable'; }
-        else { matchCls = 'severe'; matchNote = 'Underfilled PAs'; }
-
-        html += `<div class="flow-result-line highlight">
-            <span class="flow-result-label">Fontan-to-Pulm Ratio</span>
-            <span class="flow-result-value">${match.toFixed(2)}</span>
-            <span class="flow-result-badge"><span class="calc-badge ${matchCls}">${matchNote}</span></span>
-        </div>`;
-    }
-
-    // Pulmonary Collateral Flow
-    let pulCollateral = NaN;
-    if (!isNaN(lpvNet.mid) && !isNaN(rpvNet.mid) && !isNaN(qp)) {
-        const totalPvFlow = lpvNet.mid + rpvNet.mid;
-        pulCollateral = totalPvFlow - qp;
-        const collPct = totalPvFlow > 0 ? (pulCollateral / totalPvFlow * 100).toFixed(0) : NaN;
-        const severe = pulCollateral > qp * 0.2;
-        html += `<div class="flow-result-line ${severe ? 'highlight' : ''}">
-            <span class="flow-result-label">Pulmonary Collateral</span>
-            <span class="flow-result-value">${pulCollateral.toFixed(2)} L/min${!isNaN(collPct) ? ` (${collPct}%)` : ''}</span>
-            <span class="flow-result-badge">${severe ? '<span class="calc-badge moderate">Significant</span>' : ''}</span>
-        </div>`;
-        reportLines.push(`Pulmonary Collateral Flow: ${pulCollateral.toFixed(2)} L/min${!isNaN(collPct) ? ` (${collPct}% of PV return)` : ''}`);
-    }
-
-    // Systemic Collateral Flow (already defined earlier, but storing in variable)
-    let systCollateral = NaN;
-    if (!isNaN(aoForward) && !isNaN(totalFontanFlow)) {
-        systCollateral = aoForward - totalFontanFlow;
-        if (systCollateral > 0) {
-            const collPct = aoForward > 0 ? (systCollateral / aoForward * 100).toFixed(0) : NaN;
-            const significant = systCollateral > aoForward * 0.15;
-            html += `<div class="flow-result-line ${significant ? 'highlight' : ''}">
-                <span class="flow-result-label">Systemic Collateral</span>
-                <span class="flow-result-value">${systCollateral.toFixed(2)} L/min${!isNaN(collPct) ? ` (${collPct}%)` : ''}</span>
-                <span class="flow-result-badge">${significant ? '<span class="calc-badge moderate">Significant</span>' : ''}</span>
-            </div>`;
-            reportLines.push('');
-            reportLines.push(`Systemic Collateral Flow: ${systCollateral.toFixed(2)} L/min${!isNaN(collPct) ? ` (${collPct}% of Ao forward)` : ''}`);
+    // ── PULMONARY ARTERIES ────────────────────────────────────
+    if (!isNaN(qp) || !isNaN(rpaNet.mid) || !isNaN(lpaNet.mid)) {
+        html += '<div class="flow-section-label">Pulmonary Arteries</div>';
+        if (!isNaN(rpaNet.mid)) {
+            html += `<div class="flow-result-line">
+                <span class="flow-result-label">RPA</span>
+                <span class="flow-result-value">${rpaNet.mid.toFixed(2)} L/min</span>
+                </div>`;
         }
-    }
-
-    // Averaged Collateral Flow (net collateral burden)
-    if (!isNaN(pulCollateral) && !isNaN(systCollateral) && systCollateral > 0) {
-        const avgCollateral = (Math.abs(pulCollateral) + systCollateral) / 2;
-        const avgIndexed = !isNaN(bsa) && bsa > 0 ? (avgCollateral / bsa).toFixed(2) : null;
-
-        // Assess severity based on indexed value or absolute
-        let collCls = '';
-        let collNote = '';
-        if (avgIndexed) {
-            if (parseFloat(avgIndexed) < 0.5) {
-                collCls = 'normal';
-                collNote = 'Minimal';
-            } else if (parseFloat(avgIndexed) < 1.0) {
-                collCls = 'mild';
-                collNote = 'Mild';
-            } else if (parseFloat(avgIndexed) < 1.5) {
-                collCls = 'moderate';
-                collNote = 'Moderate';
-            } else {
-                collCls = 'severe';
-                collNote = 'Severe';
+        if (!isNaN(lpaNet.mid)) {
+            html += `<div class="flow-result-line">
+                <span class="flow-result-label">LPA</span>
+                <span class="flow-result-value">${lpaNet.mid.toFixed(2)} L/min</span>
+                </div>`;
+        }
+        if (!isNaN(qp)) {
+            const qpI = !isNaN(bsa) && bsa > 0 ? `, ${(qp / bsa).toFixed(2)} L/min/m²` : '';
+            html += `<div class="flow-result-line highlight">
+                <span class="flow-result-label">Pulmonary Output (Qpa)</span>
+                <span class="flow-result-value">${qp.toFixed(2)} L/min${qpI}</span>
+                </div>`;
+            if (!isNaN(qs) && qs > 0) {
+                html += `<div class="flow-result-line ${qpqsClass(qp / qs)}">
+                    <span class="flow-result-label">Qpa:Qs</span>
+                    <span class="flow-result-value">${(qp / qs).toFixed(2)}</span>
+                </div>`;
             }
-        } else if (avgCollateral > 1.0) {
-            collCls = 'moderate';
-            collNote = 'Significant';
         }
+        if (!isNaN(lpaNet.mid) && !isNaN(rpaNet.mid) && qp > 0) {
+            const rPct = (rpaNet.mid / qp * 100).toFixed(0);
+            const lPct = (lpaNet.mid / qp * 100).toFixed(0);
+            const asymmetric = Math.abs(lpaNet.mid / qp - 0.5) > 0.15;
+            html += `<div class="flow-result-line ${asymmetric ? 'highlight moderate' : ''}">
+                <span class="flow-result-label">RPA/LPA Split</span>
+                <span class="flow-result-value">${rPct}% / ${lPct}%</span>
+            </div>`;
+        }
+    }
 
-        html += `<div class="flow-result-line ${collCls === 'severe' || collCls === 'moderate' ? 'highlight' : ''}">
-            <span class="flow-result-label">Average Collateral</span>
-            <span class="flow-result-value">${avgCollateral.toFixed(2)} L/min${avgIndexed ? `, ${avgIndexed} L/min/m²` : ''}</span>
-            <span class="flow-result-badge">${collNote ? `<span class="calc-badge ${collCls}">${collNote}</span>` : ''}</span>
-        </div>`;
-        reportLines.push(`Average Collateral Flow: ${avgCollateral.toFixed(2)} L/min${avgIndexed ? `, ${avgIndexed} L/min/m²` : ''} (${collNote})`);
+    // ── PULMONARY VEINS ───────────────────────────────────────
+    if (!isNaN(qpv) || !isNaN(rpvNet.mid) || !isNaN(lpvNet.mid)) {
+        html += '<div class="flow-section-label">Pulmonary Veins</div>';
+        if (!isNaN(rpvNet.mid)) {
+            html += `<div class="flow-result-line">
+                <span class="flow-result-label">RPV</span>
+                <span class="flow-result-value">${rpvNet.mid.toFixed(2)} L/min</span>
+                </div>`;
+        }
+        if (!isNaN(lpvNet.mid)) {
+            html += `<div class="flow-result-line">
+                <span class="flow-result-label">LPV</span>
+                <span class="flow-result-value">${lpvNet.mid.toFixed(2)} L/min</span>
+                </div>`;
+        }
+        if (!isNaN(qpv)) {
+            const qpvI = !isNaN(bsa) && bsa > 0 ? `, ${(qpv / bsa).toFixed(2)} L/min/m²` : '';
+            html += `<div class="flow-result-line highlight">
+                <span class="flow-result-label">PV Return (Qpv)</span>
+                <span class="flow-result-value">${qpv.toFixed(2)} L/min${qpvI}</span>
+                </div>`;
+            if (!isNaN(qs) && qs > 0) {
+                html += `<div class="flow-result-line">
+                    <span class="flow-result-label">Qpv:Qs</span>
+                    <span class="flow-result-value">${(qpv / qs).toFixed(2)}</span>
+                        </div>`;
+            }
+            if (!isNaN(rpvNet.mid) && !isNaN(lpvNet.mid) && qpv > 0) {
+                const rPvPct = (rpvNet.mid / qpv * 100).toFixed(0);
+                const lPvPct = (lpvNet.mid / qpv * 100).toFixed(0);
+                html += `<div class="flow-result-line">
+                    <span class="flow-result-label">RPV/LPV Split</span>
+                    <span class="flow-result-value">${rPvPct}% / ${lPvPct}%</span>
+                        </div>`;
+            }
+        }
+    }
+
+    // ── CAVAE / SYSTEMIC VEINS ────────────────────────────────
+    if (glennOk || fontanOk || !isNaN(totalFontanFlow)) {
+        html += '<div class="flow-section-label">Cavae / Systemic Veins</div>';
+        if (glennOk) {
+            const gI = !isNaN(bsa) && bsa > 0 ? `, ${(glennNet.mid / bsa).toFixed(2)} L/min/m²` : '';
+            html += `<div class="flow-result-line">
+                <span class="flow-result-label">SVC / Glenn</span>
+                <span class="flow-result-value">${glennNet.mid.toFixed(2)} L/min${gI}</span>
+                </div>`;
+        }
+        if (fontanOk) {
+            const fI = !isNaN(bsa) && bsa > 0 ? `, ${(fontanNet.mid / bsa).toFixed(2)} L/min/m²` : '';
+            html += `<div class="flow-result-line">
+                <span class="flow-result-label">Fontan / IVC</span>
+                <span class="flow-result-value">${fontanNet.mid.toFixed(2)} L/min${fI}</span>
+                </div>`;
+        }
+        if (!isNaN(totalFontanFlow)) {
+            const tI = !isNaN(bsa) && bsa > 0 ? `, ${(totalFontanFlow / bsa).toFixed(2)} L/min/m²` : '';
+            html += `<div class="flow-result-line highlight">
+                <span class="flow-result-label">Total Caval Return</span>
+                <span class="flow-result-value">${totalFontanFlow.toFixed(2)} L/min${tI}</span>
+                </div>`;
+        }
+        if (glennOk && fontanOk) {
+            const totalIn = glennNet.mid + fontanNet.mid;
+            const glennPct = (glennNet.mid / totalIn * 100).toFixed(0);
+            const fontanPct = (fontanNet.mid / totalIn * 100).toFixed(0);
+            html += `<div class="flow-result-line">
+                <span class="flow-result-label">Inflow Distribution</span>
+                <span class="flow-result-value">Glenn ${glennPct}% / Fontan ${fontanPct}%</span>
+                </div>`;
+        }
+    }
+
+    // ── SHUNT RATIOS ──────────────────────────────────────────
+    const availableRatios = qRatioRows.filter(r => !isNaN(r.num) && !isNaN(r.den) && r.den > 0);
+    if (availableRatios.length > 0) {
+        html += '<div class="flow-section-label">Shunt Ratios</div>';
+        availableRatios.forEach(({ label, num, den, primary }) => {
+            const ratio = num / den;
+            html += `<div class="flow-result-line ${primary ? `highlight ${qpqsClass(ratio)}` : ''}">
+                <span class="flow-result-label">${label}</span>
+                <span class="flow-result-value">${ratio.toFixed(2)}</span>
+            </div>`;
+        });
+    }
+
+    // ── COLLATERAL FLOWS ──────────────────────────────────────
+    const anyCollateral = (!isNaN(systCollateral) && systCollateral > 0) || !isNaN(pulCollateral) || !isNaN(avgCollateral);
+    if (anyCollateral) {
+        html += '<div class="flow-section-label">Collateral Flows</div>';
+        if (!isNaN(systCollateral) && systCollateral > 0) {
+            html += `<div class="flow-result-line ${systCollSignificant ? 'highlight moderate' : ''}">
+                <span class="flow-result-label">Qcoll-syst (Qsa − Qsv)</span>
+                <span class="flow-result-value">${systCollateral.toFixed(2)} L/min${systCollPct ? ` (${systCollPct}% aortic flow)` : ''}</span>
+            </div>`;
+        }
+        if (!isNaN(pulCollateral)) {
+            html += `<div class="flow-result-line ${pulCollSevere ? 'highlight moderate' : ''}">
+                <span class="flow-result-label">Qcoll-pulm (Qpv − Qpa)</span>
+                <span class="flow-result-value">${pulCollateral.toFixed(2)} L/min${pulCollPctOfAo !== null ? ` (${pulCollPctOfAo}% aortic flow)` : ''}</span>
+            </div>`;
+        }
+        if (!isNaN(avgCollateral)) {
+            html += `<div class="flow-result-line ${avgCollCls && avgCollCls !== 'normal' ? `highlight ${avgCollCls}` : ''}">
+                <span class="flow-result-label">Q coll-avg</span>
+                <span class="flow-result-value">${avgCollateral.toFixed(2)} L/min</span>
+            </div>`;
+        }
     }
 
     // Regurgitation section
@@ -1020,8 +995,7 @@ function calcFontanFlow() {
             const item = regurgItems.find(r => r.label === regurgName);
 
             if (item) {
-                const badgeLabel = item.cls.charAt(0).toUpperCase() + item.cls.slice(1);
-                html += `<div class="regurg-result-item ${item.highlight}">
+                html += `<div class="regurg-result-item ${item.cls}">
                     <span class="regurg-result-label">${item.label}</span>
                     <div>
                         <span class="regurg-result-value">${item.value}</span>
@@ -1030,9 +1004,6 @@ function calcFontanFlow() {
                         }
                         <span class="regurg-method">${item.method}</span>
                     </div>
-                    <span class="regurg-result-badge">
-                        <span class="calc-badge ${item.cls}">${badgeLabel}</span>
-                    </span>
                 </div>`;
                 regurgLines.push(item.reportText);
             } else {
@@ -1046,16 +1017,108 @@ function calcFontanFlow() {
         html += '</div>';
     }
 
-    if (regurgLines.length > 0) {
-        reportLines.push('');
-        reportLines.push('Regurgitation:');
-        reportLines.push(...regurgLines);
-    }
     html += '</div></div>';
     resultEl.innerHTML = html;
 
-    // Store report text for copying
-    window.fontanFlowReport = reportLines.join('\n');
+    // Build structured report for copying
+    const rpt = ['Flow Quantification (estimated via 4D Flow MRI):'];
+    rpt.push('');
+
+    // Systemic
+    if (!isNaN(qs)) {
+        const qsI = !isNaN(bsa) && bsa > 0 ? `, ${(qs / bsa).toFixed(2)} L/min/m²` : '';
+        rpt.push(`Systemic Output (Qs): ${qs.toFixed(2)} L/min${qsI}`);
+    }
+    rpt.push('');
+
+    // Pulmonary Arteries
+    rpt.push('Pulmonary Arteries:');
+    rpt.push('');
+    if (!isNaN(rpaNet.mid)) rpt.push(`Right pulmonary artery: ${rpaNet.mid.toFixed(2)} L/min`);
+    if (!isNaN(lpaNet.mid)) rpt.push(`Left pulmonary artery: ${lpaNet.mid.toFixed(2)} L/min`);
+    if (!isNaN(qp)) {
+        const qpI = !isNaN(bsa) && bsa > 0 ? `, ${(qp / bsa).toFixed(2)} L/min/m²` : '';
+        rpt.push(`Pulmonary Output (Qpa): ${qp.toFixed(2)} L/min${qpI}`);
+    }
+    if (!isNaN(qp) && !isNaN(qs) && qs > 0) rpt.push(`Qpa:Qs: ${(qp / qs).toFixed(2)}`);
+    if (!isNaN(lpaNet.mid) && !isNaN(rpaNet.mid) && qp > 0) {
+        const rPct = (rpaNet.mid / qp * 100).toFixed(0);
+        const lPct = (lpaNet.mid / qp * 100).toFixed(0);
+        rpt.push(`RPA/LPA Flow Split: ${rPct}% right / ${lPct}% left`);
+    }
+    rpt.push('');
+
+    // Pulmonary Veins
+    rpt.push('Pulmonary Veins:');
+    rpt.push('');
+    if (!isNaN(rpvNet.mid)) rpt.push(`Right pulmonary veins: ${rpvNet.mid.toFixed(2)} L/min`);
+    if (!isNaN(lpvNet.mid)) rpt.push(`Left pulmonary veins: ${lpvNet.mid.toFixed(2)} L/min`);
+    if (!isNaN(qpv)) {
+        const qpvI = !isNaN(bsa) && bsa > 0 ? `, ${(qpv / bsa).toFixed(2)} L/min/m²` : '';
+        rpt.push(`Pulmonary venous return: ${qpv.toFixed(2)} L/min${qpvI}`);
+        if (!isNaN(qs) && qs > 0) rpt.push(`Qpv/Qs: ${(qpv / qs).toFixed(2)}`);
+        if (!isNaN(rpvNet.mid) && !isNaN(lpvNet.mid) && qpv > 0) {
+            const rPvPct = (rpvNet.mid / qpv * 100).toFixed(0);
+            const lPvPct = (lpvNet.mid / qpv * 100).toFixed(0);
+            rpt.push(`RPV/LPV Flow Split: ${rPvPct}% right / ${lPvPct}% left`);
+        }
+    }
+    rpt.push('');
+
+    // Cavae/Systemic Veins
+    rpt.push('Cavae/Systemic Veins:');
+    rpt.push('');
+    if (glennOk) rpt.push(`SVC/Glenn: ${glennNet.mid.toFixed(2)} L/min`);
+    if (fontanOk) rpt.push(`Fontan: ${fontanNet.mid.toFixed(2)} L/min`);
+    if (!isNaN(totalFontanFlow)) {
+        const tffI = !isNaN(bsa) && bsa > 0 ? `, ${(totalFontanFlow / bsa).toFixed(2)} L/min/m²` : '';
+        rpt.push(`Total Caval Return: ${totalFontanFlow.toFixed(2)} L/min${tffI}`);
+    }
+    rpt.push('');
+
+    // Shunt Ratios
+    rpt.push('Shunt Ratios:');
+    qRatioRows.forEach(({ label, num, den }) => {
+        if (!isNaN(num) && !isNaN(den) && den > 0) {
+            rpt.push(`${label}: ${(num / den).toFixed(2)}`);
+        }
+    });
+    rpt.push('');
+
+    // Collaterals
+    if (!isNaN(systCollateral) && systCollateral > 0) {
+        const pct = !isNaN(qs) && qs > 0 ? ` (${(systCollateral / qs * 100).toFixed(0)}% aortic flow)` : '';
+        rpt.push(`Qcoll-syst (Qsa − Qsv): ${systCollateral.toFixed(2)} L/min${pct}`);
+    }
+    if (!isNaN(pulCollateral)) {
+        const pct = !isNaN(qs) && qs > 0 ? ` (${(pulCollateral / qs * 100).toFixed(0)}% aortic flow)` : '';
+        rpt.push(`Qcoll-pulm (Qpv − Qpa): ${pulCollateral.toFixed(2)} L/min${pct}`);
+    }
+    if (!isNaN(avgCollateral)) {
+        const pct = !isNaN(qs) && qs > 0 ? ` (${(avgCollateral / qs * 100).toFixed(0)}% aortic flow)` : '';
+        rpt.push(`Q coll-avg ((Qcoll-syst + Qcoll-pulm)/2): ${avgCollateral.toFixed(2)} L/min${pct}`);
+    }
+
+    // Regurgitation
+    if (regurgItems.length > 0) {
+        rpt.push('');
+        rpt.push('Regurgitation:');
+        rpt.push('');
+        [
+            { name: 'Aortic Regurgitation',    label: 'Aortic' },
+            { name: 'Pulmonary Regurgitation', label: 'Pulmonary' },
+            { name: 'Mitral Regurgitation',    label: 'Mitral' },
+            { name: 'Tricuspid Regurgitation', label: 'Tricuspid' },
+        ].forEach(({ name, label }) => {
+            const item = regurgItems.find(r => r.label === name);
+            if (item) {
+                const rf = !isNaN(item.rf) ? `, RF ${item.rf.toFixed(0)}%` : '';
+                rpt.push(`${label}: ${item.value}${rf}`);
+            }
+        });
+    }
+
+    window.fontanFlowReport = rpt.join('\n');
 }
 
 function copyFontanFlowReport() {
