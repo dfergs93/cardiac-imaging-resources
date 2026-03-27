@@ -459,13 +459,15 @@ function calcStandardFlow() {
             rf: arRf,
             cls: arCls,
             highlight: highlight,
+            method: 'Direct',
             reportText: `  Aortic: ${fmtFlowWithBeat(arFlow, hr)}, regurgitant fraction ${arRf.toFixed(0)}%`
         });
     }
 
     // Mitral Regurgitation
-    if (!isNaN(mrIn) && mrIn > 0 && !isNaN(aoNet.mid) && aoNet.mid > 0) {
-        const mrRf = mrFlow / (aoNet.mid+mrFlow) * 100;
+    // MR RF = MR / LVSV, LVSV = MR + AVFF (AVFF = aoForward = aoNet + AR)
+    if (!isNaN(mrIn) && mrIn > 0 && !isNaN(aoForward) && aoForward > 0) {
+        const mrRf = mrFlow / (aoForward + mrFlow) * 100;
         const mrCls = mrRf < 20 ? 'mild' : mrRf < 40 ? 'moderate' : 'severe';
         const highlight = mrRf >= 40 ? 'highlight' : '';
         regurgItems.push({
@@ -474,6 +476,7 @@ function calcStandardFlow() {
             rf: mrRf,
             cls: mrCls,
             highlight: highlight,
+            method: mrUserEntered ? 'Direct' : 'LVSV − AVFF',
             reportText: `  Mitral: ${fmtFlowWithBeat(mrFlow, hr)}, regurgitant fraction ${mrRf.toFixed(0)}%`
         });
     }
@@ -489,6 +492,7 @@ function calcStandardFlow() {
             rf: prRf,
             cls: prCls,
             highlight: highlight,
+            method: 'Direct',
             reportText: `  Pulmonary: ${fmtFlowWithBeat(prFlow, hr)}, regurgitant fraction ${prRf.toFixed(0)}%`
         });
     }
@@ -498,7 +502,7 @@ function calcStandardFlow() {
         // trFlow is already converted to L/min
         // Convert back to mL/beat for grading
         let trVolMlBeat = !isNaN(hr) && hr > 0 ? (trFlow * 1000 / hr) : NaN;
-        
+
         if (!isNaN(trVolMlBeat)) {
             let trCls;
             if (trVolMlBeat < 30) {
@@ -508,12 +512,13 @@ function calcStandardFlow() {
             } else {
                 trCls = 'severe';
             }
-            
+
             let trRf = NaN;
+            // TR RF = TR / RVSV, RVSV = TR + PVFF (PVFF = paForward = paNet + PR)
             if (!isNaN(paForward) && paForward > 0) {
-                trRf = trFlow / paForward * 100;
+                trRf = trFlow / (paForward + trFlow) * 100;
             }
-            
+
             const highlight = trCls === 'severe' ? 'highlight' : '';
             regurgItems.push({
                 label: 'Tricuspid Regurgitation',
@@ -521,6 +526,7 @@ function calcStandardFlow() {
                 rf: trRf,
                 cls: trCls,
                 highlight: highlight,
+                method: trUserEntered ? 'Direct' : 'RVSV − PVFF',
                 reportText: `  Tricuspid: ${fmtFlowWithBeat(trFlow, hr)}${!isNaN(trRf) ? `, RF ${trRf.toFixed(0)}%` : ''}`
             });
         }
@@ -530,11 +536,11 @@ function calcStandardFlow() {
     let regurgLines = [];
     if (regurgItems.length > 0) {
         html += '<div class="regurg-results-grid">';
-        
+
         // Define the order: AR, MR, PR, TR
-        const regurgOrder = ['Aortic Regurgitation', 'Mitral Regurgitation', 
+        const regurgOrder = ['Aortic Regurgitation', 'Mitral Regurgitation',
                             'Pulmonary Regurgitation', 'Tricuspid Regurgitation'];
-        
+
         regurgOrder.forEach(regurgName => {
             const item = regurgItems.find(r => r.label === regurgName);
 
@@ -544,9 +550,10 @@ function calcStandardFlow() {
                     <span class="regurg-result-label">${item.label}</span>
                     <div>
                         <span class="regurg-result-value">${item.value}</span>
-                        ${!isNaN(item.rf) ? 
+                        ${!isNaN(item.rf) ?
                             `<span class="regurg-result-value">RF ${item.rf.toFixed(0)}%</span>` : ''
                         }
+                        <span class="regurg-method">${item.method}</span>
                     </div>
                     <span class="regurg-result-badge">
                         <span class="calc-badge ${item.cls}">${badgeLabel}</span>
@@ -928,13 +935,15 @@ function calcFontanFlow() {
             rf: arRf,
             cls: arCls,
             highlight: highlight,
+            method: 'Direct',
             reportText: `  Aortic: ${fmtFlowWithBeat(arFlow, hr)}, regurgitant fraction ${arRf.toFixed(0)}%`
         });
     }
 
     // Mitral Regurgitation
-    if (!isNaN(mrIn) && mrIn > 0 && !isNaN(aoNet.mid) && aoNet.mid > 0) {
-        const mrRf = mrFlow / (aoNet.mid + mrFlow) * 100;
+    // MR RF = MR / LVSV, LVSV = MR + AVFF (AVFF = aoForward = aoNet + AR)
+    if (!isNaN(mrIn) && mrIn > 0 && !isNaN(aoForward) && aoForward > 0) {
+        const mrRf = mrFlow / (aoForward + mrFlow) * 100;
         const mrCls = mrRf < 20 ? 'mild' : mrRf < 40 ? 'moderate' : 'severe';
         const highlight = mrRf >= 40 ? 'highlight' : '';
         regurgItems.push({
@@ -943,6 +952,7 @@ function calcFontanFlow() {
             rf: mrRf,
             cls: mrCls,
             highlight: highlight,
+            method: mrUserEntered ? 'Direct' : 'LVSV − AVFF',
             reportText: `  Mitral: ${fmtFlowWithBeat(mrFlow, hr)}, regurgitant fraction ${mrRf.toFixed(0)}%`
         });
     }
@@ -958,6 +968,7 @@ function calcFontanFlow() {
             rf: prRf,
             cls: prCls,
             highlight: highlight,
+            method: 'Direct',
             reportText: `  Pulmonary: ${fmtFlowWithBeat(prFlow, hr)}, regurgitant fraction ${prRf.toFixed(0)}%`
         });
     }
@@ -967,7 +978,7 @@ function calcFontanFlow() {
         // trFlow is already converted to L/min via regurgToLmin(trIn, 'mlbeat', hr)
         // Convert back to mL/beat for grading
         let trVolMlBeat = !isNaN(hr) && hr > 0 ? (trFlow * 1000 / hr) : NaN;
-        
+
         if (!isNaN(trVolMlBeat)) {
             let trCls;
             if (trVolMlBeat < 30) {
@@ -977,12 +988,13 @@ function calcFontanFlow() {
             } else {
                 trCls = 'severe';
             }
-            
+
             let trRf = NaN;
-            if (!isNaN(paNet.mid) && paNet.mid > 0) {
-                trRf = trFlow / (paNet.mid + trFlow) * 100;
+            // TR RF = TR / RVSV, RVSV = TR + PVFF (PVFF = paForward = paNet + PR)
+            if (!isNaN(paForward) && paForward > 0) {
+                trRf = trFlow / (paForward + trFlow) * 100;
             }
-            
+
             const highlight = trCls === 'severe' ? 'highlight' : '';
             regurgItems.push({
                 label: 'Tricuspid Regurgitation',
@@ -990,6 +1002,7 @@ function calcFontanFlow() {
                 rf: trRf,
                 cls: trCls,
                 highlight: highlight,
+                method: trUserEntered ? 'Direct' : 'RVSV − PVFF',
                 reportText: `  Tricuspid: ${fmtFlowWithBeat(trFlow, hr)}${!isNaN(trRf) ? `, RF ${trRf.toFixed(0)}%` : ''}`
             });
         }
@@ -999,10 +1012,10 @@ function calcFontanFlow() {
     let regurgLines = [];
     if (regurgItems.length > 0) {
         html += '<div class="regurg-results-grid">';
-        
-        const regurgOrder = ['Aortic Regurgitation', 'Mitral Regurgitation', 
+
+        const regurgOrder = ['Aortic Regurgitation', 'Mitral Regurgitation',
                             'Pulmonary Regurgitation', 'Tricuspid Regurgitation'];
-        
+
         regurgOrder.forEach(regurgName => {
             const item = regurgItems.find(r => r.label === regurgName);
 
@@ -1012,9 +1025,10 @@ function calcFontanFlow() {
                     <span class="regurg-result-label">${item.label}</span>
                     <div>
                         <span class="regurg-result-value">${item.value}</span>
-                        ${!isNaN(item.rf) ? 
+                        ${!isNaN(item.rf) ?
                             `<span class="regurg-result-value">RF ${item.rf.toFixed(0)}%</span>` : ''
                         }
+                        <span class="regurg-method">${item.method}</span>
                     </div>
                     <span class="regurg-result-badge">
                         <span class="calc-badge ${item.cls}">${badgeLabel}</span>

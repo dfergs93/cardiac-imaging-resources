@@ -796,6 +796,13 @@ select:focus,
     margin-top: auto;
 }
 
+.regurg-method {
+    font-size: 0.72rem;
+    color: var(--md-default-fg-color--light);
+    font-style: italic;
+    margin-top: 0.1rem;
+}
+
 /* ============================================================
    BADGES
    ============================================================ */
@@ -926,6 +933,10 @@ select:focus,
 
 [data-md-color-scheme="slate"] .regurg-result-label {
     color: #63b3ed;
+}
+
+[data-md-color-scheme="slate"] .regurg-method {
+    color: #718096;
 }
 
 /* ============================================================
