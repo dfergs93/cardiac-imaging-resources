@@ -535,7 +535,7 @@ function calcStandardFlow() {
 
         // Define the order: AR, MR, PR, TR
         const regurgOrder = ['Aortic Regurgitation', 'Mitral Regurgitation',
-                            'Pulmonary Regurgitation', 'Tricuspid Regurgitation'];
+            'Pulmonary Regurgitation', 'Tricuspid Regurgitation'];
 
         regurgOrder.forEach(regurgName => {
             const item = regurgItems.find(r => r.label === regurgName);
@@ -546,8 +546,8 @@ function calcStandardFlow() {
                     <div>
                         <span class="regurg-result-value">${item.value}</span>
                         ${!isNaN(item.rf) ?
-                            `<span class="regurg-result-value">RF ${item.rf.toFixed(0)}%</span>` : ''
-                        }
+                        `<span class="regurg-result-value">RF ${item.rf.toFixed(0)}%</span>` : ''
+                    }
                         <span class="regurg-method">${item.method}</span>
                     </div>
                 </div>`;
@@ -560,7 +560,7 @@ function calcStandardFlow() {
                 </div>`;
             }
         });
-        
+
         html += '</div>';
     }
 
@@ -638,7 +638,7 @@ function calcFontanFlow() {
 
     const arFlow = regurgToLmin(arIn, regUnits, hr);
     const prFlow = regurgToLmin(prIn, regUnits, hr);
-    
+
     // Calculate forward flows from net + regurgitant volumes
     const aoForward = (!isNaN(aoNet.mid)) ? aoNet.mid + (!isNaN(arFlow) ? arFlow : 0) : NaN;
     const paForward = (!isNaN(paNet.mid)) ? paNet.mid + (!isNaN(prFlow) ? prFlow : 0) : NaN;
@@ -686,9 +686,9 @@ function calcFontanFlow() {
     // Pre-compute collateral values (needed for both HTML and copied report)
     // pa = pulmonary arterial, pv = pulmonary venous, sa = systemic arterial, sv = systemic venous
     const qRatioRows = [
-        { label: 'Qpa:Qsa', num: qp,  den: qs,              primary: true  },
-        { label: 'Qpv:Qsa', num: qpv, den: qs,              primary: false },
-        { label: 'Qpa:Qsv', num: qp,  den: totalFontanFlow, primary: false },
+        { label: 'Qpa:Qsa', num: qp, den: qs, primary: true },
+        { label: 'Qpv:Qsa', num: qpv, den: qs, primary: false },
+        { label: 'Qpa:Qsv', num: qp, den: totalFontanFlow, primary: false },
         { label: 'Qpv:Qsv', num: qpv, den: totalFontanFlow, primary: false },
     ];
 
@@ -704,12 +704,12 @@ function calcFontanFlow() {
     let systCollateral = NaN;
     let systCollPct = null;
     let systCollSignificant = false;
-    if (!isNaN(aoForward) && !isNaN(totalFontanFlow)) {
-        const raw = aoForward - totalFontanFlow;
+    if (!isNaN(qs) && !isNaN(totalFontanFlow)) {
+        const raw = qs - totalFontanFlow;
         if (raw > 0) {
             systCollateral = raw;
             systCollPct = !isNaN(qs) && qs > 0 ? (systCollateral / qs * 100).toFixed(0) : null;
-            systCollSignificant = systCollateral > aoForward * 0.15;
+            systCollSignificant = systCollateral > qs * 0.2;
         }
     }
 
@@ -720,10 +720,10 @@ function calcFontanFlow() {
         avgCollateral = (Math.abs(pulCollateral) + systCollateral) / 2;
         const avgI = !isNaN(bsa) && bsa > 0 ? avgCollateral / bsa : NaN;
         if (!isNaN(avgI)) {
-            if (avgI < 0.5)       { avgCollCls = 'normal';   avgCollNote = 'Minimal'; }
-            else if (avgI < 1.0)  { avgCollCls = 'mild';     avgCollNote = 'Mild'; }
-            else if (avgI < 1.5)  { avgCollCls = 'moderate'; avgCollNote = 'Moderate'; }
-            else                  { avgCollCls = 'severe';   avgCollNote = 'Severe'; }
+            if (avgI < 0.5) { avgCollCls = 'normal'; avgCollNote = 'Minimal'; }
+            else if (avgI < 1.0) { avgCollCls = 'mild'; avgCollNote = 'Mild'; }
+            else if (avgI < 1.5) { avgCollCls = 'moderate'; avgCollNote = 'Moderate'; }
+            else { avgCollCls = 'severe'; avgCollNote = 'Severe'; }
         } else if (avgCollateral > 1.0) {
             avgCollCls = 'moderate'; avgCollNote = 'Significant';
         }
@@ -989,7 +989,7 @@ function calcFontanFlow() {
         html += '<div class="regurg-results-grid">';
 
         const regurgOrder = ['Aortic Regurgitation', 'Mitral Regurgitation',
-                            'Pulmonary Regurgitation', 'Tricuspid Regurgitation'];
+            'Pulmonary Regurgitation', 'Tricuspid Regurgitation'];
 
         regurgOrder.forEach(regurgName => {
             const item = regurgItems.find(r => r.label === regurgName);
@@ -1000,8 +1000,8 @@ function calcFontanFlow() {
                     <div>
                         <span class="regurg-result-value">${item.value}</span>
                         ${!isNaN(item.rf) ?
-                            `<span class="regurg-result-value">RF ${item.rf.toFixed(0)}%</span>` : ''
-                        }
+                        `<span class="regurg-result-value">RF ${item.rf.toFixed(0)}%</span>` : ''
+                    }
                         <span class="regurg-method">${item.method}</span>
                     </div>
                 </div>`;
@@ -1013,7 +1013,7 @@ function calcFontanFlow() {
                 </div>`;
             }
         });
-        
+
         html += '</div>';
     }
 
@@ -1105,9 +1105,9 @@ function calcFontanFlow() {
         rpt.push('Regurgitation:');
         rpt.push('');
         [
-            { name: 'Aortic Regurgitation',    label: 'Aortic' },
+            { name: 'Aortic Regurgitation', label: 'Aortic' },
             { name: 'Pulmonary Regurgitation', label: 'Pulmonary' },
-            { name: 'Mitral Regurgitation',    label: 'Mitral' },
+            { name: 'Mitral Regurgitation', label: 'Mitral' },
             { name: 'Tricuspid Regurgitation', label: 'Tricuspid' },
         ].forEach(({ name, label }) => {
             const item = regurgItems.find(r => r.label === name);
@@ -1195,12 +1195,12 @@ function initBernoulliCalc() {
     const vmaxEl = el('bern-vmax');
     const pgEl = el('bern-pg');
     if (!vmaxEl || !pgEl) return;
-    
-    vmaxEl.addEventListener('input', function() {
+
+    vmaxEl.addEventListener('input', function () {
         calcBernoulli('vmax');
     });
-    
-    pgEl.addEventListener('input', function() {
+
+    pgEl.addEventListener('input', function () {
         calcBernoulli('pg');
     });
 }
@@ -1208,12 +1208,12 @@ function initBernoulliCalc() {
 function calcBernoulli(source) {
     const vmaxEl = el('bern-vmax');
     const pgEl = el('bern-pg');
-    
+
     if (!vmaxEl || !pgEl) return;
-    
+
     const vmax = fVal('bern-vmax');
     const pg = fVal('bern-pg');
-    
+
     // Calculate based on which one was updated
     if (source === 'vmax' && !isNaN(vmax) && vmax > 0) {
         // Calculate PG from velocity
@@ -1236,13 +1236,13 @@ function initCHDTabs() {
         btn.addEventListener('click', function () {
             const tabName = this.dataset.tab;
             const container = this.closest('.chd-tabs-container');
-            
+
             if (!container) return;
-            
+
             // Remove active class from all buttons and content in this container
             container.querySelectorAll('.chd-tab-btn').forEach(b => b.classList.remove('active'));
             container.querySelectorAll('.chd-tab-content').forEach(c => c.classList.remove('active'));
-            
+
             // Add active class to clicked button and corresponding content
             this.classList.add('active');
             const contentEl = container.querySelector('#chd-tab-' + tabName);
