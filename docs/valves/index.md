@@ -4,7 +4,7 @@ title: Valve Grading Reference
 
 # Valve Grading Reference
 
-Quick-reference severity grading for stenosis and regurgitation. Based on ACC/AHA and ASE guidelines.
+Quick-reference severity grading for stenosis and regurgitation. Based on ACC/AHA 2020, ESC/EACTS 2025, and ASE 2017 guidelines; AR section updated with CMR outcome-based thresholds from JACC state-of-the-art reviews.
 
 ---
 
@@ -30,28 +30,89 @@ Quick-reference severity grading for stenosis and regurgitation. Based on ACC/AH
 
 ---
 
-## Aortic Regurgitation (CMR Grading)
+## Aortic Regurgitation
+
+### Echo Severity Grading
 
 <div class="grading-table-wrap" markdown="1">
 
-| Severity | RF (%) | RVol (mL/beat) | ERO (cm²) | Vena Contracta (mm) |
-|----------|--------|-----------------|-----------|----------------------|
-| **Mild** | <20 | <30 | <0.10 | <3 |
-| **Moderate** | 20–39 | 30–59 | 0.10–0.29 | 3–6 |
-| **Severe** | ≥40 | ≥60 | ≥0.30 | >6 |
+| Severity | RF (%) | RVol (mL/beat) | EROA (cm²) | Vena Contracta (mm) |
+|----------|--------|----------------|------------|---------------------|
+| **Mild** | <30 | <30 | <0.10 | <3 |
+| **Moderate** | 30–39 | 30–44 | 0.10–0.19 | 3–5.9 |
+| **Moderate–Severe** | 40–49 | 45–59 | 0.20–0.29 | — |
+| **Severe** | ≥50 | ≥60 | ≥0.30 | ≥6 |
 
 </div>
 
-!!! note "CMR AR Assessment"
-    Regurgitant fraction by 4D flow or 2D PC at the ascending aorta is the reference standard. RF ≥40% = severe. Also measure LV EDVi, ESVi, and EF.
+*ACC/AHA 2020 / ASE 2017 integrated echocardiographic grading.*
 
-**Aortic root dilation thresholds by CT/CMR:**
+### CMR — Outcome-Based Thresholds
+
+Formal CMR-specific severity grades have not been established in guidelines; ASE 2017 applies echocardiographic cut-offs to CMR by default. Accumulating outcome data support **lower CMR-specific thresholds** for hemodynamically significant AR:<sup>1,2</sup>
+
+<div class="grading-table-wrap" markdown="1">
+
+| CMR Parameter | Threshold | Clinical Significance |
+|---------------|-----------|-----------------------|
+| RF | **≥32–35%** | Predicts symptom progression, need for AVR, and adverse outcomes |
+| RF | **>33%** | 85% vs 8% progression to surgery (Myerson et al) |
+| RF | **≥43%** | Optimal CMR threshold — multicenter study n=458 asymptomatic patients (Malahfji et al)<sup>1</sup> |
+| RVol | **>38–47 mL** | ROC-optimal range for predicting AVR<sup>1,2</sup> |
+| Holodiastolic retrograde flow | Descending aorta | 2.8× risk of death or HF hospitalization<sup>1,2</sup> |
+
+</div>
+
+!!! warning "CMR vs Echo RF: Key Discordance"
+    CMR-RF ≥32–35% predicts adverse outcomes — substantially lower than the echo-derived severe threshold (RF ≥50%). RF ≥50% has high specificity but poor sensitivity for identifying early LV remodeling by CMR. Among patients within guideline thresholds by echo (LVESDi <25 mm/m²), >1/3 had LVESVi ≥45 mL/m² on CMR, placing them at elevated risk.
+
+### CMR LV Remodeling Parameters
+
+<div class="grading-table-wrap" markdown="1">
+
+| Parameter | Threshold | Significance |
+|-----------|-----------|--------------|
+| **LVESVi** | ≥43 mL/m² | 2–3× higher adverse outcome risk (Malahfji)<sup>1</sup> |
+| **LVESVi** | ≥45 mL/m² | Independent predictor of death/HF with preserved EF; ESC/EACTS 2025 Class IIb trigger<sup>2</sup> |
+| **LVEDVi** | ≥109 mL/m² | Associated with adverse outcomes (Malahfji)<sup>1</sup> |
+| **LVEDVi** | >155 mL/m² | Predicts poor reverse remodeling post-AVR<sup>2</sup> |
+| **CMR-GLS** | Worse than −16% to −19% | Abnormal strain; associated with adverse outcomes<sup>1</sup> |
+| **Indexed ECV** | ≥24 mL/m² | Associated with mortality and progression to AVR<sup>1</sup> |
+
+</div>
+
+!!! tip "Volumes Outperform Linear Dimensions"
+    LVESDi >25 mm/m² (current guideline threshold) misses >1/3 of patients with CMR LVESVi ≥45 mL/m². Measure true volumetric indices — diameter is a surrogate. ESC/EACTS 2025 now formally incorporates LVESVi alongside linear triggers.
+
+### Intervention Thresholds
+
+<div class="grading-table-wrap" markdown="1">
+
+| Indication | Class | Guideline |
+|------------|-------|-----------|
+| Symptomatic severe AR | **I** | ACC/AHA 2020; ESC/EACTS 2025 |
+| Asymptomatic severe AR + LVEF ≤55% | **I** | ACC/AHA 2020 |
+| Asymptomatic severe AR + LVEF ≤50% | **I** | ESC/EACTS 2025 |
+| Asymptomatic severe AR + LVESD >50 mm or LVESDi >25 mm/m² | **I** (ESC) · **IIa** (ACC/AHA) | Both |
+| Severe AR at time of other cardiac surgery | **I** | Both |
+| LVEF declining to 55–60% on ≥3 serial studies | **IIb** | ACC/AHA 2020 |
+| Progressive LVEDD >65 mm | **IIb** | ACC/AHA 2020 |
+| Low-risk asymptomatic: LVESDi >22 mm/m² or LVESVi ≥45 mL/m² | **IIb** | ESC/EACTS 2025 |
+
+</div>
+
+### Aortic Root Dilation by CT/CMR
 
 | Site | Normal | Consider surgery |
 |------|--------|-----------------|
 | Aortic annulus | <25 mm/m² | — |
 | Sinus of Valsalva | ♂ <40 mm, ♀ <36 mm | ♂ ≥55 mm (≥50 mm in Marfan/bicuspid) |
 | Ascending aorta | <40 mm | ≥55 mm (≥45 mm in bicuspid) |
+
+**AR References**
+
+1. Ranard LS, Bonow RO, Nishimura R, et al. Imaging Methods for Evaluation of Chronic Aortic Regurgitation in Adults: JACC State-of-the-Art Review. *J Am Coll Cardiol.* 2023;82(20):1953–1966.
+2. Pawar S, Allen C, Mori M, et al. Contemporary Diagnosis and Treatment of Aortic Regurgitation: A State-of-the-Art Review. *J Am Coll Cardiol.* 2026;87(4):385–413.
 
 ---
 
