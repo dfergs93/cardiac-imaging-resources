@@ -54,7 +54,7 @@ title: Cardiac Masses Protocol
 
 | Feature | Low T1 | High T1 | Low T2 | High T2 | Enhances |
 |---------|--------|---------|--------|---------|---------|
-| Thrombus | ✓ (acute) | ✓ (subacute/chronic) | ✓ | ✗ | **No** (avascular) |
+| Thrombus | ✓ (chronic) | ✓ (subacute) | ✓ (chronic) | ✗ | **No** (avascular) |
 | Myxoma | ✓ | ✗ | ✗ | ✓ | Yes (heterogeneous) |
 | Lipoma | ✗ | ✓ (fat) | ✗ | ✓ | No |
 | Fibroelastoma | ✓ | ✗ | ✗ | ✗ | Variable |
@@ -65,6 +65,7 @@ title: Cardiac Masses Protocol
 
 !!! tip "Thrombus Key Feature"
     Thrombus does **not enhance** on perfusion or delayed LGE. A perfused mass enhances — not a thrombus.
+    Signal changes with age: fresh thrombus is intermediate on T1 and T2, subacute thrombus can be T1 bright (methemoglobin), and chronic organized thrombus is dark on both.
 
 ---
 
