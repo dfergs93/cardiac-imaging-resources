@@ -9,8 +9,8 @@ title: TAVR Planning CT
 
     - **Annulus sizing:** area and perimeter have equal standing. Area is the sizing measure for balloon-expandable valves and perimeter for self-expanding valves; neither is only a cross-check.
     - **Sinotubular junction:** measure its diameter and height. An STJ narrower than the planned valve raises the risk of STJ injury, especially with a balloon-expandable valve and a low STJ.
-    - **Coronary occlusion risk:** CAR 2024 says a coronary height under 12 mm or a mean sinus diameter under 30 mm raises the risk, read together with the annulus, root, leaflet calcium and the planned valve; no single height rules TAVR in or out. The 10 and 15 mm bands and the BASILICA prompts below come from no published source.
-    - **Access:** compare each side's minimal luminal diameter with the outer diameter of the planned sheath (SCCT 2019). The subclavian/axillary "≥6.0 mm" and the ">90° iliofemoral angle" come from no published source, and no tortuosity cut-off has been established (ESCR 2020): describe tortuosity, and flag calcified, tortuous segments.
+    - **Coronary occlusion risk:** CAR 2024 says a coronary height under 12 mm or a mean sinus diameter under 30 mm raises the risk, read together with the annulus, root, leaflet calcium and the planned valve; no single height rules TAVR in or out. The 10 and 15 mm bands below are not how CAR 2024 or SCCT 2019 put it, and none of the documents checked ties the BASILICA prompts to height bands.
+    - **Access:** compare each side's minimal luminal diameter with the outer diameter of the planned sheath (SCCT 2019). The subclavian/axillary "≥6.0 mm" and the ">90° iliofemoral angle" are in none of the documents checked, and ESCR 2020 says no tortuosity cut-off has been established: describe tortuosity, and flag calcified, tortuous segments.
 
     Sources: [CAR/CSTR 2024 Part 2](https://doi.org/10.1177/08465371241233228), [SCCT 2019](https://doi.org/10.1016/j.jcct.2018.11.008) and [ESCR 2020](https://doi.org/10.1007/s00330-019-06357-8).
 

@@ -19,6 +19,8 @@ Convert between peak velocity and peak pressure gradient using the simplified Be
 
 **Formula:** \(\Delta P = 4 V_{max}^2\)
 
+This is the peak gradient. With a proximal (LVOT) velocity over 1.5 m/s, or a peak velocity under 3.0 m/s, use ΔP = 4(Vmax² − Vproximal²) (ASE/EACVI 2017).
+
 ---
 
 <div class="calc-card">
