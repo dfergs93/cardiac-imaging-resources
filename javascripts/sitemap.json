@@ -1,0 +1,228 @@
+[
+    {
+        "slug": "home",
+        "keywords": [
+            "Cardiac Imaging Resources"
+        ],
+        "url": "https://dfergs93.github.io/cardiac-imaging-resources/"
+    },
+    {
+        "slug": "protocols-troubleshooting",
+        "keywords": [
+            "Cardiac CT Protocolling",
+            "Cardiac CT Protocols",
+            "Cardiac CT Troubleshooting",
+            "Cardiac CT"
+        ],
+        "url": "https://dfergs93.github.io/cardiac-imaging-resources/cardiac_ct/"
+    },
+    {
+        "slug": "tavr",
+        "keywords": [
+            "TAVR",
+            "TAVR Planning"
+        ],
+        "url": "https://dfergs93.github.io/cardiac-imaging-resources/cardiac_ct/device_planning/tavr/"
+    },
+    {
+        "slug": "tmvr",
+        "keywords": [
+            "TMVR",
+            "TMVR Planning"
+        ],
+        "url": "https://dfergs93.github.io/cardiac-imaging-resources/cardiac_ct/device_planning/tmvr/"
+    },
+    {
+        "slug": "ttvr",
+        "keywords": [
+            "TTVR",
+            "TTVR Planning"
+        ],
+        "url": "https://dfergs93.github.io/cardiac-imaging-resources/cardiac_ct/device_planning/ttvr/"
+    },
+    {
+        "slug": "laao",
+        "keywords": [
+            "LAAO",
+            "LAAO Planning"
+        ],
+        "url": "https://dfergs93.github.io/cardiac-imaging-resources/cardiac_ct/device_planning/laao/"
+    },
+    {
+        "slug": "overview-sequences",
+        "keywords": [
+            "Overview Cardiac MRI Sequences",
+            "Cardiac MRI Sequences",
+            "Cardiac Sequences",
+            "Cardiac MRI"
+        ],
+        "url": "https://dfergs93.github.io/cardiac-imaging-resources/cardiac_mri/"
+    },
+    {
+        "slug": "cardiomyopathy",
+        "keywords": [
+            "Cardiomyopathy Protocol",
+            "Non-ischemic Cardiomyopathy",
+            "Ischemic Cardiomyopathy",
+            "HCM",
+            "Hypertrophic Cardiomyopathy",
+            "Dilated Cardiomyopathy",
+            "DCM"
+        ],
+        "url": "https://dfergs93.github.io/cardiac-imaging-resources/cardiac_mri/protocols/cardiomyopathy/"
+    },
+    {
+        "slug": "stress-perfusion",
+        "keywords": [
+            "Stress Perfusion",
+            "Stress",
+            "Perfusion"
+        ],
+        "url": "https://dfergs93.github.io/cardiac-imaging-resources/cardiac_mri/protocols/stress_perfusion/"
+    },
+    {
+        "slug": "congenital-4d-flow",
+        "keywords": [
+            "Congenital protocol"
+        ],
+        "url": "https://dfergs93.github.io/cardiac-imaging-resources/cardiac_mri/protocols/congenital_4dflow/"
+    },
+    {
+        "slug": "cardiac-masses",
+        "keywords": [
+            "Cardiac Masses"
+        ],
+        "url": "https://dfergs93.github.io/cardiac-imaging-resources/cardiac_mri/protocols/cardiac_masses/"
+    },
+    {
+        "slug": "grading-reference",
+        "keywords": [
+            "Valve Grading Reference",
+            "Valve"
+        ],
+        "url": "https://dfergs93.github.io/cardiac-imaging-resources/valves/"
+    },
+    {
+        "slug": "overview-segmental-analysis",
+        "keywords": [
+            "Overview & Segmental Analysis",
+            "Segmental Analysis"
+        ],
+        "url": "https://dfergs93.github.io/cardiac-imaging-resources/congenital/"
+    },
+    {
+        "slug": "tetralogy-of-fallot",
+        "keywords": [
+            "Tetralogy of Fallot",
+            "Tetralogy",
+            "Fallot",
+            "TOF"
+        ],
+        "url": "https://dfergs93.github.io/cardiac-imaging-resources/congenital/tof/"
+    },
+    {
+        "slug": "d-transposition-tga",
+        "keywords": [
+            "D-Transposition (TGA)",
+            "Transposition",
+            "TGA",
+            "d-TGA"
+        ],
+        "url": "https://dfergs93.github.io/cardiac-imaging-resources/congenital/tga/"
+    },
+    {
+        "slug": "congenitally-corrected-transposition-cctga",
+        "keywords": [
+            "Congenitally Corrected Transposition",
+            "ccTGA"
+        ],
+        "url": "https://dfergs93.github.io/cardiac-imaging-resources/congenital/cctga/"
+    },
+    {
+        "slug": "double-outlet-right-ventricle",
+        "keywords": [
+            "Double Outlet Right Ventricle",
+            "DORV"
+        ],
+        "url": "https://dfergs93.github.io/cardiac-imaging-resources/congenital/dorv/"
+    },
+    {
+        "slug": "atrial-septal-defect",
+        "keywords": [
+            "Atrial Septal Defect",
+            "ASD"
+        ],
+        "url": "https://dfergs93.github.io/cardiac-imaging-resources/congenital/asd/"
+    },
+    {
+        "slug": "ventricular-septal-defect",
+        "keywords": [
+            "Ventricular Septal Defect",
+            "VSD"
+        ],
+        "url": "https://dfergs93.github.io/cardiac-imaging-resources/congenital/vsd/"
+    },
+    {
+        "slug": "fontan-circulation",
+        "keywords": [
+            "Fontan Circulation",
+            "Fontan"
+        ],
+        "url": "https://dfergs93.github.io/cardiac-imaging-resources/congenital/fontan/"
+    },
+    {
+        "slug": "coarctation",
+        "keywords": [
+            "Coarctation",
+            "CoA"
+        ],
+        "url": "https://dfergs93.github.io/cardiac-imaging-resources/congenital/coa/"
+    },
+    {
+        "slug": "ebstein-anomaly",
+        "keywords": [
+            "Ebstein Anomaly",
+            "Ebstein"
+        ],
+        "url": "https://dfergs93.github.io/cardiac-imaging-resources/congenital/ebstein/"
+    },
+    {
+        "slug": "avsd",
+        "keywords": [
+            "AVSD",
+            "Atrioventricular Septal Defect"
+        ],
+        "url": "https://dfergs93.github.io/cardiac-imaging-resources/congenital/avsd/"
+    },
+    {
+        "slug": "overview",
+        "keywords": [
+            "Cardiac Calculators"
+        ],
+        "url": "https://dfergs93.github.io/cardiac-imaging-resources/calculators/"
+    },
+    {
+        "slug": "ecv",
+        "keywords": [
+            "ECV",
+            "Extracellular Volume"
+        ],
+        "url": "https://dfergs93.github.io/cardiac-imaging-resources/calculators/ecv/"
+    },
+    {
+        "slug": "4d-flow",
+        "keywords": [
+            "4D Flow",
+            "Flow"
+        ],
+        "url": "https://dfergs93.github.io/cardiac-imaging-resources/calculators/flow/"
+    },
+    {
+        "slug": "bernoulli",
+        "keywords": [
+            "Bernoulli",
+            "Pressure Gradient"
+        ],
+        "url": "https://dfergs93.github.io/cardiac-imaging-resources/calculators/bernoulli/"
+    }
+]
