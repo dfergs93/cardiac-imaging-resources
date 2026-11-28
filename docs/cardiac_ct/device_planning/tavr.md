@@ -4,11 +4,24 @@ title: TAVR Planning CT
 
 # TAVR Planning CT
 
+!!! danger "Parts of this page are wrong: do not use them for patient management (notice, 27 November 2026)"
+    A check against the CAR/CSTR 2024 cardiac CT guidelines (Part 2) and the SCCT 2019 TAVI consensus found errors that could change management:
+
+    - **Annulus sizing:** area and perimeter have equal standing. Area is the sizing measure for balloon-expandable valves and perimeter for self-expanding valves; neither is only a cross-check.
+    - **Sinotubular junction:** measure its diameter and height. An STJ narrower than the planned valve raises the risk of STJ injury, especially with a balloon-expandable valve and a low STJ.
+    - **Coronary occlusion risk:** CAR 2024 says a coronary height under 12 mm or a mean sinus diameter under 30 mm raises the risk, read together with the annulus, root, leaflet calcium and the planned valve; no single height rules TAVR in or out. The 10 and 15 mm bands and the BASILICA prompts below come from no published source.
+    - **Access:** compare each side's minimal luminal diameter with the outer diameter of the planned sheath (SCCT 2019). The subclavian/axillary "≥6.0 mm" and the ">90° iliofemoral angle" come from no published source, and no tortuosity cut-off has been established (ESCR 2020): describe tortuosity, and flag calcified, tortuous segments.
+
+    Sources: [CAR/CSTR 2024 Part 2](https://doi.org/10.1177/08465371241233228), [SCCT 2019](https://doi.org/10.1016/j.jcct.2018.11.008) and [ESCR 2020](https://doi.org/10.1007/s00330-019-06357-8).
+
 Pre-procedural CT is the **essential imaging modality** for TAVR candidate assessment. For scan protocols, see the **[Protocol Manager](https://dfergs93.github.io/radiology-protocols/ct/cardiac)**.
 
 ---
 
 ## Aortic Annulus Sizing
+
+!!! danger "Out of date: see the notice at the top of this page"
+
 
 Measure perpendicular to the LVOT outflow axis (coronal oblique through the three hinge points of the aortic cusps). Measure in **systole** (or the phase with the largest annular area).
 
@@ -18,7 +31,7 @@ Measure perpendicular to the LVOT outflow axis (coronal oblique through the thre
 | **Area-derived D** | Trace annular area → D = 2√(A/π) | Cross-check |
 | **Max / Min diameter** | Widest and narrowest annular diameters | Assess eccentricity |
 | **Annular area** | Planimetry | Directly guides device selection |
-| **LVOT D** (3–5 mm below annulus) | Perpendicular measurement | CoreValve sizing; LVOT obstruction risk |
+| **LVOT D** (3–5 mm below annulus; local practice) | Perpendicular measurement | CoreValve sizing; LVOT obstruction risk |
 
 !!! info "Sizing convention"
     Area- and perimeter-derived diameters are preferred over simple 2D max/min diameters for device selection. Eccentricity index = (max D − min D) / max D; values >0.10 indicate significant eccentricity.
@@ -26,6 +39,9 @@ Measure perpendicular to the LVOT outflow axis (coronal oblique through the thre
 ---
 
 ## Aortic Root Measurements
+
+!!! danger "Out of date: see the notice at the top of this page"
+
 
 | Level | What to Measure | Notes |
 |-------|-----------------|-------|
@@ -38,6 +54,9 @@ Measure perpendicular to the LVOT outflow axis (coronal oblique through the thre
 ---
 
 ## Coronary Occlusion Risk
+
+!!! danger "Out of date: see the notice at the top of this page"
+
 
 Measure coronary ostial height perpendicular to the annular plane.
 
@@ -55,6 +74,9 @@ Additional factors that increase risk regardless of height: narrow sinus of Vals
 ---
 
 ## Vascular Access
+
+!!! danger "Out of date: see the notice at the top of this page"
+
 
 | Access Site | Min Diameter | Notes |
 |-------------|-------------|-------|

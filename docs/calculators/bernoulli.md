@@ -6,7 +6,16 @@ hide:
 
 # Simplified Bernoulli
 
-Convert between peak velocity and pressure gradient using the simplified Bernoulli equation.
+!!! danger "Parts of this page are wrong: do not use them for patient management (notice, 27 November 2026)"
+    A check against the ASE/EACVI 2017 aortic stenosis recommendations, the ACC/AHA 2020 valve guideline and the EAE/ASE 2009 stenosis recommendations found errors in the grading tables that could change management. The calculator is right, but 4V² of the peak velocity is the **peak** gradient: the mean gradient is traced from the Doppler envelope and can't be worked out from one velocity.
+
+    - **Aortic:** a mean gradient under 20 mmHg is mild and 20–39 mmHg moderate, with severe at ≥40 mmHg. The table's under 25 and 25–40 make 20–24 mmHg mild and 40 mmHg both moderate and severe. Mild has a valve area over 1.5 cm².
+    - **Mitral:** follow the ACC/AHA stages. Severe MS is an MVA ≤1.5 cm² (pressure half-time ≥150 ms) and progressive MS over 1.5 cm²; there is no moderate stage, and a normal MVA is 4.0–5.0 cm², not over 2.0. Mean gradient and PAP are consequences, not grades.
+    - **Tricuspid:** the findings of significant stenosis are a mean gradient ≥5 mmHg, an inflow VTI over 60 cm, a pressure half-time ≥190 ms and a valve area ≤1.0 cm² by continuity (EAE/ASE 2009, Table 10). The table's >5 mmHg and <1.0 cm² miss both edges.
+
+    Sources: [ASE/EACVI 2017](https://doi.org/10.1016/j.echo.2017.02.009), [ACC/AHA 2020](https://doi.org/10.1161/CIR.0000000000000923) and [EAE/ASE 2009](https://doi.org/10.1016/j.echo.2008.11.029).
+
+Convert between peak velocity and peak pressure gradient using the simplified Bernoulli equation.
 
 **Formula:** \(\Delta P = 4 V_{max}^2\)
 
@@ -15,7 +24,7 @@ Convert between peak velocity and pressure gradient using the simplified Bernoul
 <div class="calc-card">
   <div class="calc-header bern-header">
     <div>
-      <h2>Velocity ↔ Pressure Gradient</h2>
+      <h2>Velocity ↔ Peak Gradient</h2>
     </div>
   </div>
   <div class="calc-body">
@@ -26,7 +35,7 @@ Convert between peak velocity and pressure gradient using the simplified Bernoul
       </div>
       <div class="bern-input-spacer">↔</div>
       <div class="bern-input-group">
-        <label>Pressure Gradient (mmHg)</label>
+        <label>Peak Gradient (mmHg)</label>
         <input type="number" id="bern-pg" min="0" max="400" step="0.1" placeholder="70.6">
       </div>
     </div>
@@ -36,6 +45,9 @@ Convert between peak velocity and pressure gradient using the simplified Bernoul
 ---
 
 ## Stenosis Grading
+
+!!! danger "Out of date: see the notice at the top of this page"
+
 
 <div class="bern-tabs-container">
   <div class="bern-tabs">

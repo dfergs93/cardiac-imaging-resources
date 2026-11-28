@@ -4,6 +4,11 @@ title: TTVR Planning CT
 
 # TTVR Planning CT
 
+!!! danger "Part of this page is wrong: do not use it for patient management (notice, 27 November 2026)"
+    A check against the 2025 TTVR expert consensus (Hausleiter et al.) found an error that could change management. **Tricuspid annulus sizing:** this page gives the end-systolic perimeter as the sizing rule, but the consensus measures the annulus in systole and diastole, and the sizing phase and measure depend on the device. Measure both phases and follow the device's requirements.
+
+    Source: [Hausleiter et al., JACC 2025](https://doi.org/10.1016/j.jacc.2024.10.071).
+
 CT planning for transcatheter tricuspid valve interventions is the **least standardized** of the three transcatheter valve domains. The tricuspid annulus is larger, more dynamic, more non-planar, and more anatomically variable than the mitral annulus, and **right-heart contrast opacification** presents unique protocol challenges. For scan protocols, see the **[Protocol Manager](https://dfergs93.github.io/radiology-protocols/ct/cardiac)**.
 
 !!! info "Acquisition Requirements"
@@ -12,6 +17,9 @@ CT planning for transcatheter tricuspid valve interventions is the **least stand
 ---
 
 ## Tricuspid Annulus Sizing
+
+!!! danger "Out of date: see the notice at the top of this page"
+
 
 The tricuspid annulus is **non-planar and highly dynamic** — dimensions vary substantially across the cardiac cycle. Measure in **end-systole** for sizing.
 

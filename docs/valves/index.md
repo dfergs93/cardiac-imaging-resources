@@ -4,11 +4,28 @@ title: Valve Grading Reference
 
 # Valve Grading Reference
 
+!!! danger "Parts of this page are wrong: do not use them for patient management (notice, 27 November 2026)"
+    A check against the ACC/AHA 2020 valve guideline, the ASE/EACVI and ASE/SCMR grading documents and the ESC/EACTS 2025 guideline found errors that could change management. Severity stages and intervention thresholds follow ACC/AHA 2020; echo grading follows ASE/EACVI.
+
+    - **Aortic stenosis:** a mean gradient under 20 mmHg is mild and 20–39 mmHg moderate (not under 25 and 25–39). Very severe is a Vmax ≥5.0 m/s or a mean gradient ≥60 mmHg; no guideline uses an AVA under 0.6 cm². In discordant low-gradient AS, use the aortic valve calcium score on non-contrast CT (ACC/AHA 2020: severe at ≥1300 AU in women, ≥2000 AU in men); CT planimetry overestimates the valve area.
+    - **Aortic regurgitation:** a vena contracta of exactly 6 mm is moderate; severe is over 6 mm. By CMR, severe AR is an RF ≥50% (ASE 2017, ACC/AHA 2020); ESC/EACTS 2025 counts a CMR RF over 40% as a criterion of severe AR. The lower thresholds in the outcome table are research findings, not grades.
+    - **Aortic root and ascending aorta:** consider surgery at ≥55 mm in everyone, not men only; at 50–55 mm with a bicuspid valve and risk factors (ACC/AHA); at ≥45 mm only when aortic valve surgery is already indicated. The Marfan figure was not checked.
+    - **Mitral stenosis:** follow the ACC/AHA stages. Severe MS is an MVA ≤1.5 cm² (pressure half-time ≥150 ms); there is no moderate stage, so an MVA of 1.0–1.5 cm² is severe. Mean gradient and PASP are consequences, not grades. The Wilkins score is for balloon commissurotomy, not MitraClip.
+    - **Secondary MR:** ACC/AHA defines severe secondary MR as for primary (EROA ≥0.40 cm², RVol ≥60 mL, RF ≥50%), and transcatheter repair needs severe MR plus the COAPT selection criteria (LVEF 20–50%, LVESD ≤70 mm, PASP ≤70 mmHg, symptoms on guideline-directed therapy). In ESC 2025 an EROA ≥30 mm² or RVol ≥45 mL carries prognostic weight, and severe is an EROA ≥40 mm² (≥30 mm² with an elliptical orifice) and RVol ≥60 mL (≥45 mL with low flow). The page's 0.20 cm², 0.30 cm² and 30 mL thresholds are wrong.
+    - **MR by CMR:** regurgitant volume is LV stroke volume minus aortic *total* forward flow, not net forward flow, which counts any aortic regurgitant volume as MR.
+    - **Tricuspid regurgitation:** severe by 3D vena contracta area is over 0.4 cm² (ASE 2017; ESC 2025 uses ≥0.75 cm²). The mild and moderate values match no source, and the cited "Adamo et al EHJ 2025" study could not be found.
+    - **Pulmonary regurgitation by CMR:** the RVol bands come from no published source.
+
+    Sources: [ACC/AHA 2020](https://doi.org/10.1161/CIR.0000000000000923), [ASE/EACVI 2017 on aortic stenosis](https://doi.org/10.1016/j.echo.2017.02.009), [ASE/SCMR 2017 on regurgitation](https://doi.org/10.1016/j.echo.2017.01.007), [EAE/ASE 2009 on stenosis](https://doi.org/10.1016/j.echo.2008.11.029), [ESC/EACTS 2025](https://doi.org/10.1093/eurheartj/ehaf194) and [CAR/CSTR 2024 Part 2](https://doi.org/10.1177/08465371241233228).
+
 Quick-reference severity grading for stenosis and regurgitation. Based on ACC/AHA 2020, ESC/EACTS 2025, and ASE 2017 guidelines; AR section updated with CMR outcome-based thresholds from JACC state-of-the-art reviews.
 
 ---
 
 ## Aortic Stenosis
+
+!!! danger "Out of date: see the notice at the top of this page"
+
 
 <div class="grading-table-wrap" markdown="1">
 
@@ -31,6 +48,9 @@ Quick-reference severity grading for stenosis and regurgitation. Based on ACC/AH
 ---
 
 ## Aortic Regurgitation
+
+!!! danger "Out of date: see the notice at the top of this page"
+
 
 ### Echo Severity Grading
 
@@ -103,6 +123,9 @@ Formal CMR-specific severity grades have not been established in guidelines; ASE
 
 ### Aortic Root Dilation by CT/CMR
 
+!!! danger "Out of date: see the notice at the top of this page"
+
+
 | Site | Normal | Consider surgery |
 |------|--------|-----------------|
 | Aortic annulus | <25 mm/m² | — |
@@ -117,6 +140,9 @@ Formal CMR-specific severity grades have not been established in guidelines; ASE
 ---
 
 ## Mitral Stenosis
+
+!!! danger "Out of date: see the notice at the top of this page"
+
 
 <div class="grading-table-wrap" markdown="1">
 
@@ -134,6 +160,9 @@ Formal CMR-specific severity grades have not been established in guidelines; ASE
 ---
 
 ## Mitral Regurgitation
+
+!!! danger "Out of date: see the notice at the top of this page"
+
 
 ### Primary (Degenerative) MR — Echo Grading
 
@@ -182,6 +211,9 @@ CMR outcome data in primary MR (Myerson et al):
 
 ## Tricuspid Regurgitation
 
+!!! danger "Out of date: see the notice at the top of this page"
+
+
 <div class="grading-table-wrap" markdown="1">
 
 | Severity | VC width (mm) | EROA (cm²) | RVol (mL/beat) | VCA — 3DE (cm²) |
@@ -206,6 +238,9 @@ CMR outcome data in primary MR (Myerson et al):
 ---
 
 ## Pulmonary Regurgitation (CMR Grading)
+
+!!! danger "Out of date: see the notice at the top of this page"
+
 
 <div class="grading-table-wrap" markdown="1">
 

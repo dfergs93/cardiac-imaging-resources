@@ -4,11 +4,28 @@ title: Cardiac CT
 
 # Cardiac CT
 
+!!! danger "Parts of this page are wrong: do not use them for patient management (notice, 27 November 2026)"
+    A check against CAD-RADS 2.0 and the CAR/CSTR 2024 cardiac CT guidelines found errors that could change management:
+
+    - **CAD-RADS 0** is no plaque and no stenosis. Plaque without stenosis, including positively remodelled plaque, is CAD-RADS 1.
+    - **CAD-RADS 3** (50–69%): consider functional assessment (CT-FFR, CT perfusion or stress testing); with ischaemia, consider invasive angiography. Functional testing is not "recommended".
+    - **CAD-RADS 4A** (70–99% in one or two vessels, without left main or three-vessel disease): consider invasive angiography or functional assessment; angiography is favoured with a stenosis over 90%, high-risk plaque or ischaemia.
+    - **CAD-RADS 4B** is a left main stenosis of 50% or more, or three-vessel obstructive (70% or more) disease, and invasive angiography is recommended. On this page a 50–69% left main stenosis falls into category 3.
+    - **CAD-RADS N** applies only when no interpretable segment has a stenosis of 50% or more; otherwise grade the worst stenosis and add /N. Obstructive disease cannot then be excluded, and further evaluation may be needed.
+    - **Plaque burden (P1–P4)**, which sets the management of categories 1 and 2, is missing, and the recommendations given are those for stable chest pain; acute chest pain has its own (CAD-RADS 2.0, Table 5).
+    - **High-risk plaque (HRP)** is coded only when one plaque shows two or more of the four features.
+    - **After a prior contrast reaction**, CAR/CSACI 2025 advises a different contrast agent, without steroid premedication. **Extravasation:** stop the injection, examine and elevate the limb, apply cold compresses and give discharge instructions; ask for a surgical consultation on the warning signs in the ACR Manual.
+
+    Sources: [CAD-RADS 2.0](https://doi.org/10.1148/ryct.220183), [CAR/CSTR 2024 Part 1](https://doi.org/10.1177/08465371241233240), [CAR/CSACI 2025](https://car.ca/wp-content/uploads/2025/05/CAR_CSACI-Practice-Guidance-for-Contrast-Media-Hypersensitivity_2025.pdf) and the [ACR Manual on Contrast Media](https://www.acr.org/Clinical-Resources/Clinical-Tools-and-Reference/Contrast-Manual).
+
 Scanning protocols for cardiac CT are maintained in the **[Radiology Protocol Manager](https://dfergs93.github.io/radiology-protocols/ct/cardiac)**. This page covers general protocol requirements, acquisition considerations, and troubleshooting pearls.
 
 ## Coronary CT Angiography (CCTA)
 
 ### CAD-RADS 2.0 Reporting
+
+!!! danger "Out of date: see the notice at the top of this page"
+
 
 | CAD-RADS | Stenosis | Recommendation |
 |----------|----------|----------------|
@@ -38,6 +55,9 @@ Scanning protocols for cardiac CT are maintained in the **[Radiology Protocol Ma
 | Respiratory motion (diaphragm) | Re-scan; increase table speed; adjust breath-hold instruction |
 
 ### Contrast Issues
+
+!!! danger "Out of date: see the notice at the top of this page"
+
 
 | Problem | Cause | Fix |
 |---------|-------|-----|
